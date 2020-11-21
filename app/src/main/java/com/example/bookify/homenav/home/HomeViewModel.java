@@ -1,16 +1,16 @@
-package com.example.bookify.ui.notifications;
+package com.example.bookify.homenav.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Library fragment");
+        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {

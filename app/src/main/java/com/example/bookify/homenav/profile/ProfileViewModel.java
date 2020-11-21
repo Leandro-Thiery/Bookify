@@ -1,4 +1,4 @@
-package com.example.bookify.ui.profile;
+package com.example.bookify.homenav.profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
