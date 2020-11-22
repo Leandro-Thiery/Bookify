@@ -124,7 +124,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         txtName.setText("Name = " + edtTxtName.getText().toString());
         txtPass.setText("Password = " + edtTxtPass.getText().toString());
         txtEmail.setText("Email = " + edtTxtEmail.getText().toString());
-        Intent intent = new Intent(Register.this, HomeActivity.class);
+        Intent intent = new Intent(Register.this, MainActivity.class);
         startActivity(intent);
     }
 }

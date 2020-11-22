@@ -10,9 +10,9 @@
         android:id="@+id/splashtxtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:text="@string/text_name"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintBottom_toTopOf="@+id/splashTxtPass"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail" />
@@ -21,27 +21,27 @@
         android:id="@+id/splashTxtPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/text_password"
+        app:layout_constraintBottom_toTopOf="@+id/splashTxtEmail"
         app:layout_constraintEnd_toEndOf="@+id/splashtxtName"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/splashtxtName"
-        app:layout_constraintTop_toBottomOf="@+id/splashtxtName" />
+        app:layout_constraintStart_toStartOf="@+id/splashtxtName" />
 
     <TextView
         android:id="@+id/splashTxtEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="104dp"
         android:text="@string/text_email"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRegister"
         app:layout_constraintEnd_toEndOf="@+id/splashTxtPass"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/splashTxtPass"
-        app:layout_constraintTop_toBottomOf="@+id/splashTxtPass" />
+        app:layout_constraintStart_toStartOf="@+id/splashTxtPass" />
 
     <Button
         android:id="@+id/buttonRegister"
@@ -52,9 +52,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splashTxtEmail"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edtTxtPass"
