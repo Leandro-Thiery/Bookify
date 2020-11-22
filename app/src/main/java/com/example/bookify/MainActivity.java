@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.PatternSyntaxException;
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.buttonLogin:
                 userLogin();
+
                 break;
 
             case R.id.txtbuttonRegister:
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intentRegister);
                 break;
             case R.id.buttonForgot:
-                Intent intentForgot = new Intent(MainActivity.this, Forgot.class);
+                Intent intentForgot = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intentForgot);
                 break;
 
@@ -76,28 +78,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(email.isEmpty()){
             edtTxtEmail.setError("Email is Required");
             edtTxtEmail.requestFocus();
+            return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             edtTxtEmail.setError("Please enter a valid email address");
             edtTxtEmail.requestFocus();
+            return;
         }
         if(password.isEmpty()){
             edtTxtPass.setError(("Password is Required"));
             edtTxtPass.requestFocus();
+            return;
         }
         if(password.length() < 6){
             edtTxtPass.setError("Minimal password length is 6 characters");
             edtTxtPass.requestFocus();
+            return;
         }
+
+        progressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);
+
+                    progressBar.setVisibility(View.GONE);
+
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if(user.isEmailVerified()){
+                        Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                    } else{
+                        user.sendEmailVerification();
+                        Toast.makeText(MainActivity.this, "Please Check your email to verify your user account", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
                 }else{
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(MainActivity.this, "Failed to login! Please try again", Toast.LENGTH_SHORT).show();
                 }
 
