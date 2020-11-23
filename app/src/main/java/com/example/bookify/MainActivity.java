@@ -18,8 +18,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.regex.PatternSyntaxException;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText edtTxtPass, edtTxtEmail;
     private FirebaseAuth mAuth;
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         edtTxtPass = findViewById(R.id.edtTxtPass);
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
-        progressBar = findViewById(R.id.mainprogressBar);
+        progressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
         //TODO: Help later
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intentRegister);
                 break;
             case R.id.buttonForgot:
-                Intent intentForgot = new Intent(MainActivity.this, HomeActivity.class);
+                Intent intentForgot = new Intent(MainActivity.this, Forgot.class);
                 startActivity(intentForgot);
                 break;
 
