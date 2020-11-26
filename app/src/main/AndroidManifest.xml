@@ -12,8 +12,8 @@
         <activity android:name=".Forgot"></activity>
         <activity android:name=".Register" />
         <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home" />
+        android:name=".HomeActivity"
+        android:label="@string/title_activity_home" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

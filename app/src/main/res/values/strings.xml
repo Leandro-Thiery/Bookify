@@ -24,6 +24,7 @@
     <string name="text_register">"Register"</string>
     <string name="button_forgot">"Forgot Password?"</string>
     <string name="button_resetpass">"Reset Password?"</string>
+    <string name="text_contributor">"Contributor : "</string>
 
 
 </resources>

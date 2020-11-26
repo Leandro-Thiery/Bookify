@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private Button logout;
-    private TextView profileTextEmail, profileTextName;
+    private TextView profileTextEmail, profileTextName, textContributor;
     private FirebaseUser user;
     private String userID;
     private DatabaseReference reference;
@@ -54,6 +54,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         profileTextEmail = root.findViewById(R.id.profileTextEmail);
         profileTextName = root.findViewById(R.id.profileTextName);
+        textContributor = root.findViewById(R.id.textContributor);
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -67,6 +69,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 if(userProfile != null){
                     String name = userProfile.name;
                     String email = userProfile.email;
+                    if (userProfile.contributor){
+                        textContributor.setText("Contributor : Yes");
+                    }else{
+                        textContributor.setText("Contributor : No");
+                    }
 
                     profileTextName.setText("Name : " + name);
                     profileTextEmail.setText("Email : " + email);

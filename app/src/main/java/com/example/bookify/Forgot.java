@@ -39,8 +39,6 @@ public class Forgot extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void resetpassword() {
