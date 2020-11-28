@@ -4,21 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookify.R;
-import com.example.bookify.homenav.home.models.HorizontalModel;
+import com.example.bookify.Book;
 import com.example.bookify.homenav.home.models.VerticalModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -49,7 +48,6 @@ public class HomeFragment extends Fragment {
         verticalRecyclerView.setAdapter(adapter);
 
         setData();
-        Toast.makeText(root.getContext(), "Help", Toast.LENGTH_SHORT).show();
 
         // vertical adapter for recyclerview
 
@@ -59,19 +57,26 @@ public class HomeFragment extends Fragment {
     }
 
     private void setData() {
-        for (int i = 0; i <= 5; i++) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("books");
+        for (int i = 0; i <= 10; i++) {
             VerticalModel verticalModel = new VerticalModel();
             verticalModel.setTitle("Title: "+i);
-            ArrayList<HorizontalModel> arrayListHorizontal = new ArrayList<>();
+            final ArrayList<Book> arrayListHorizontal = new ArrayList<>();
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Book book;
+                    for (DataSnapshot snapshot1 : snapshot.getChildren() ){
+                        book = snapshot1.getValue(Book.class);
+                        arrayListHorizontal.add(book);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            for(int j=0;j<=5;j++){
-                HorizontalModel horizontalModel = new HorizontalModel();
-                horizontalModel.setDescription("Description: " +j);
-                horizontalModel.setName(i+"Name: "+j);
-                arrayListHorizontal.add(horizontalModel);
 
-            }
-
+                }
+            });
             verticalModel.setArrayList(arrayListHorizontal);
             arrayListVertical.add(verticalModel);
         }

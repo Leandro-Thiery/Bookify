@@ -7,11 +7,19 @@
     app:cardCornerRadius="5dp"
     app:cardUseCompatPadding="true">
 
+    <ProgressBar
+        android:id="@+id/progressBar4"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="5dp">
+
 
         <ImageView
             android:id="@+id/ivThumb"
@@ -21,6 +29,7 @@
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher"
             />
+
         <TextView
             android:id="@+id/text_title_horizontal"
             android:layout_width="match_parent"
@@ -28,10 +37,10 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="Sample"
+            android:gravity="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="18dp"
+            android:textSize="16dp"
             />
-
 
 
     </LinearLayout>

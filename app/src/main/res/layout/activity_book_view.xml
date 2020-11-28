@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BookView">
+
+    <ImageView
+        android:id="@+id/bookImageView"
+        android:layout_width="150dp"
+        android:layout_height="225dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="100dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bookTitleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:text="Title"
+        app:layout_constraintStart_toEndOf="@+id/bookImageView"
+        app:layout_constraintTop_toTopOf="@+id/bookImageView" />
+
+    <TextView
+        android:id="@+id/bookCategoryView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Category"
+        app:layout_constraintStart_toStartOf="@+id/bookTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/bookTitleText" />
+
+    <TextView
+        android:id="@+id/bookDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Description"
+        app:layout_constraintStart_toStartOf="@+id/bookImageView"
+        app:layout_constraintTop_toBottomOf="@+id/bookImageView" />
+
+    <TextView
+        android:id="@+id/bookTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/bookTitleView"
+        app:layout_constraintTop_toBottomOf="@+id/bookTitleView" />
+
+    <TextView
+        android:id="@+id/bookCategoryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/bookCategoryView"
+        app:layout_constraintTop_toBottomOf="@+id/bookCategoryView" />
+
+    <TextView
+        android:id="@+id/bookDescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/bookDescriptionView"
+        app:layout_constraintTop_toBottomOf="@+id/bookDescriptionView" />
+
+    <Button
+        android:id="@+id/buttonRead"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:text="Read"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.234"
+        app:layout_constraintStart_toEndOf="@+id/bookDescriptionView"
+        app:layout_constraintTop_toBottomOf="@+id/bookCategoryText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
