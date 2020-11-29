@@ -2,6 +2,8 @@ package com.example.bookify.homenav.home;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +13,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.bookify.BookView;
-import com.example.bookify.MainActivity;
 import com.example.bookify.R;
 import com.example.bookify.Book;
-import com.example.bookify.Register;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<HorizontalRecyclerViewAdapter.HorizontalRVViewHolder> {
 
@@ -47,18 +56,39 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
         holder.textViewTitle.setText(book.getTitle());
         holder.progressBar.setVisibility(View.VISIBLE);
 
+        MultiTransformation<Bitmap> multi = new MultiTransformation<>(
+                new CenterCrop(),
+                new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)
+        );
 
-        Picasso.get().load(book.getCover_url()).error(R.mipmap.ic_launcher).into(holder.imageViewThumb, new Callback() {
+
+        Glide.with(context).load(book.getCover_url())
+                .transform(multi).listener(new RequestListener<Drawable>() {
             @Override
-            public void onSuccess() {
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 holder.progressBar.setVisibility(View.GONE);
+                return false;
             }
 
             @Override
-            public void onError(Exception e) {
-                Toast.makeText(context, "Something wrong happened", Toast.LENGTH_SHORT).show();
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                holder.progressBar.setVisibility(View.GONE);
+                return false;
             }
-        });
+        }).placeholder(R.drawable.ic_launcher_foreground).into(holder.imageViewThumb);
+
+
+//        Picasso.get().load(book.getCover_url()).error(R.mipmap.ic_launcher).into(holder.imageViewThumb, new Callback() {
+//            @Override
+//            public void onSuccess() {
+//                holder.progressBar.setVisibility(View.GONE);
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//                Toast.makeText(context, "Something wrong happened", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 

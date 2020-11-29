@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -48,7 +49,6 @@ public class HomeFragment extends Fragment {
         verticalRecyclerView.setAdapter(adapter);
 
         setData();
-
         // vertical adapter for recyclerview
 
 
@@ -58,7 +58,8 @@ public class HomeFragment extends Fragment {
 
     private void setData() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("books");
-        for (int i = 0; i <= 10; i++) {
+        reference.keepSynced(true);
+        for (int i = 0; i <= 5; i++) {
             VerticalModel verticalModel = new VerticalModel();
             verticalModel.setTitle("Title: "+i);
             final ArrayList<Book> arrayListHorizontal = new ArrayList<>();
@@ -69,6 +70,7 @@ public class HomeFragment extends Fragment {
                     for (DataSnapshot snapshot1 : snapshot.getChildren() ){
                         book = snapshot1.getValue(Book.class);
                         arrayListHorizontal.add(book);
+                        adapter.notifyDataSetChanged();
                     }
                 }
                 @Override

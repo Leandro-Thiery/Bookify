@@ -36,11 +36,12 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/colorWhite"
         android:id="@+id/recycleviewhomehorizontal"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="190dp"
+        android:padding="5dp"
         android:layout_gravity="center_vertical"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints" />
+        android:orientation="horizontal" />
 
 </LinearLayout>

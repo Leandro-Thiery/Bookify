@@ -27,9 +27,8 @@ public class OpenPDF extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p_d_f_view);
-
         Intent intent = getIntent();
-        final Book book = (Book) intent.getSerializableExtra("Book");
+        final Book book = (Book) intent.getSerializableExtra("Bookpdf");
         progressBar = findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.VISIBLE);
         webView = findViewById(R.id.webview);
