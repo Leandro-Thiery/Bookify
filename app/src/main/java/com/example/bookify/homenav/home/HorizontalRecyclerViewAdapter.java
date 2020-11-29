@@ -95,7 +95,6 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, book.getDescription(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, BookView.class);
                 intent.putExtra("Book", book);
                 context.startActivity(intent);
