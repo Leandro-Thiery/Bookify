@@ -30,10 +30,15 @@ public class OpenPDF extends AppCompatActivity {
         Intent intent = getIntent();
         final Book book = (Book) intent.getSerializableExtra("Bookpdf");
         progressBar = findViewById(R.id.progressBar2);
-        progressBar.setVisibility(View.VISIBLE);
-        webView = findViewById(R.id.webview);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(book.pdf_url);
-        progressBar.setVisibility(View.GONE);
+//        progressBar.setVisibility(View.VISIBLE);
+//        webView = findViewById(R.id.webview);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.loadUrl(book.pdf_url);
+//        progressBar.setVisibility(View.GONE);
+        //gak bisa yang ini
+
+        //TODO Load PDF from URL Here, url from book.pdf_url
+
+
     }
 }
