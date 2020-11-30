@@ -30,6 +30,7 @@ public class OpenPDF extends AppCompatActivity {
         Intent intent = getIntent();
         final Book book = (Book) intent.getSerializableExtra("Bookpdf");
         progressBar = findViewById(R.id.progressBar2);
+
 //        progressBar.setVisibility(View.VISIBLE);
 //        webView = findViewById(R.id.webview);
 //        webView.getSettings().setJavaScriptEnabled(true);

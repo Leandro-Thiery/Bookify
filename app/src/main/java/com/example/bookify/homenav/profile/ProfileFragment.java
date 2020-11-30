@@ -101,6 +101,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 Toast.makeText(getActivity(), "Successfully Logout!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
+                getActivity().finish();
                 break;
             default:
                 break;

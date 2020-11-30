@@ -108,6 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(intent);
+                        finish();
+
+                        //TODO save login Activity so Users won't need to Login again
+
                     } else{
                         user.sendEmailVerification();
                         Toast.makeText(MainActivity.this, "Please Check your email to verify your user account", Toast.LENGTH_LONG).show();
