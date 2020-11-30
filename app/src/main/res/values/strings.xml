@@ -26,5 +26,7 @@
     <string name="button_resetpass">"Reset Password?"</string>
     <string name="text_contributor">"Contributor : "</string>
 
+    <string name="title">"Title"</string>
+
 
 </resources>

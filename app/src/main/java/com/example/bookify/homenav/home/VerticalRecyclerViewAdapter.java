@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookify.R;
-import com.example.bookify.homenav.home.models.HorizontalModel;
+import com.example.bookify.Book;
 import com.example.bookify.homenav.home.models.VerticalModel;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
     public void onBindViewHolder(@NonNull VerticalRVViewHolder holder, int position) {
         final VerticalModel verticalModel = arrayList.get(position);
         String title = verticalModel.getTitle();
-        ArrayList<HorizontalModel> singleitem = verticalModel.getArrayList();
+        ArrayList<Book> singleitem = verticalModel.getArrayList();
 
         holder.title.setText(title);
         HorizontalRecyclerViewAdapter horizontalRecyclerViewAdapter = new HorizontalRecyclerViewAdapter(context,singleitem);
