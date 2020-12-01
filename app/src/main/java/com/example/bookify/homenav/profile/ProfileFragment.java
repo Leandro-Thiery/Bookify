@@ -99,11 +99,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        getActivity().getActionBar().hide();
-        super.onCreateOptionsMenu(menu, inflater);
-    }
 
     @Override
     public void onClick(View v) {
