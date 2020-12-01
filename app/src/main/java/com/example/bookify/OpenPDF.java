@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
@@ -29,9 +30,17 @@ public class OpenPDF extends AppCompatActivity {
         setContentView(R.layout.activity_p_d_f_view);
         Intent intent = getIntent();
         final Book book = (Book) intent.getSerializableExtra("Bookpdf");
+        Toast.makeText(this, book.getPdf_url(), Toast.LENGTH_SHORT).show();
         progressBar = findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.VISIBLE);
+        webView = findViewById(R.id.webview);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("https://docs.google.com/gview?embedded=true&url=" + book.getPdf_url());
+        progressBar.setVisibility(View.GONE);
 
-//        progressBar.setVisibility(View.VISIBLE);
+
+
+
 //        webView = findViewById(R.id.webview);
 //        webView.getSettings().setJavaScriptEnabled(true);
 //        webView.loadUrl(book.pdf_url);
