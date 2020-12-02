@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgroundBlue"
     tools:context=".homenav.dashboard.DashboardFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -23,7 +24,7 @@
                 android:id="@+id/search_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_roundedbottom"
+                android:background="@drawable/bg_roundbottom"
                 android:minHeight="?attr/actionBarSize"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
@@ -46,23 +47,23 @@
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/search_text"
+                app:layout_constraintStart_toEndOf="@+id/searchText"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/search_text"
+                android:id="@+id/searchText"
                 android:layout_width="253dp"
                 android:layout_height="30dp"
                 android:background="@drawable/bg_roundright"
                 android:ems="10"
                 android:fontFamily="@font/athiti"
-                android:importantForAutofill="no"
+                android:gravity="center_vertical"
+                android:hint="@string/search_search_here"
                 android:inputType="textPersonName"
                 android:paddingStart="10dp"
-                android:paddingTop="5dp"
+                android:paddingTop="0dp"
                 android:paddingEnd="10dp"
-                android:paddingBottom="5dp"
-                android:text="@string/search_search_here"
+                android:paddingBottom="0dp"
                 android:textColor="#999999"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -84,7 +85,7 @@
                 android:src="@drawable/ic_baseline_search_24"
                 android:tint="#004DAD"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/search_text"
+                app:layout_constraintEnd_toStartOf="@+id/searchText"
                 app:layout_constraintStart_toStartOf="@+id/search_toolbar"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,18 +93,15 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TextView
-        android:id="@+id/text_search"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/resultList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="99dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
