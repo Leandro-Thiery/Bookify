@@ -37,21 +37,10 @@ public class OpenPDF extends AppCompatActivity {
         Toast.makeText(this, book.getPdf_url(), Toast.LENGTH_SHORT).show();
         progressBar = findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.VISIBLE);
-//        webView = findViewById(R.id.webview);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.loadUrl("https://docs.google.com/gview?embedded=true&url=" + book.getPdf_url());
-//        progressBar.setVisibility(View.GONE);
-
         pdfView = findViewById(R.id.pdfView);
         url = book.getPdf_url();
         new PDFStream().execute(url);
-
-//        webView = findViewById(R.id.webview);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.loadUrl(book.pdf_url);
-//        progressBar.setVisibility(View.GONE);
-        //gak bisa yang ini
-
+        progressBar.setVisibility(View.GONE);
         //TODO Load PDF from URL Here, url from book.pdf_url
 
 

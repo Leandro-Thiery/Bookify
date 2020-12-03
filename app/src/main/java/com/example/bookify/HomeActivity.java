@@ -25,11 +25,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        Toolbar toolbar = findViewById(R.id.home_top_bar);
-        textView = findViewById(R.id.text_top_bar);
-        setSupportActionBar(toolbar);
-        textView.setText("Hello");
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -42,12 +39,5 @@ public class HomeActivity extends AppCompatActivity {
 
         // See Fragment Class for each fragments
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater1 = getMenuInflater();
-        inflater1.inflate(R.menu.top_menu,menu);
-        return super.onCreateOptionsMenu(menu);
     }
 }

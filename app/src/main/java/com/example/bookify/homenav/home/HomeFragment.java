@@ -53,8 +53,6 @@ public class HomeFragment extends Fragment {
         //});
 
         arrayListVertical = new ArrayList<>();
-        toolbar = getActivity().findViewById(R.id.home_top_bar);
-        usertext = getActivity().findViewById(R.id.text_top_bar);
 
 
         verticalRecyclerView = root.findViewById(R.id.recycleviewhome);
@@ -71,23 +69,6 @@ public class HomeFragment extends Fragment {
         reference.keepSynced(true);
         userID = user.getUid();
 
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
-
-                if(userProfile != null){
-                    String name = userProfile.getName();
-                    usertext.setText("Welcome Back, " + name);
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getActivity(), "Profile Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
 
