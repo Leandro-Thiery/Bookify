@@ -24,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        getSupportActionBar().hide();
         BottomNavigationView navView = findViewById(R.id.nav_view);
         Toolbar toolbar = findViewById(R.id.home_top_bar);
         textView = findViewById(R.id.text_top_bar);

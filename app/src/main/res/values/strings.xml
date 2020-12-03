@@ -26,6 +26,12 @@
     <string name="button_resetpass">"Reset Password?"</string>
     <string name="text_contributor">"Contributor : "</string>
 
+    <string name="search_search_here">"Search Here…"</string>
+    <string name="search_buttondesc">"Search Bar Button"</string>
+    <string name="search_back">"Back"</string>
+    <string name="search_title">"Book Title"</string>
+    <string name="search_author">"Author"</string>
+
     <string name="title">"Title"</string>
 
 
