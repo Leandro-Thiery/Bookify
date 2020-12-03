@@ -17,12 +17,16 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class OpenPDF extends AppCompatActivity {
     PDFView pdfView;
     ProgressBar progressBar;
     WebView webView;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +37,14 @@ public class OpenPDF extends AppCompatActivity {
         Toast.makeText(this, book.getPdf_url(), Toast.LENGTH_SHORT).show();
         progressBar = findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.VISIBLE);
-        webView = findViewById(R.id.webview);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("https://docs.google.com/gview?embedded=true&url=" + book.getPdf_url());
-        progressBar.setVisibility(View.GONE);
+//        webView = findViewById(R.id.webview);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.loadUrl("https://docs.google.com/gview?embedded=true&url=" + book.getPdf_url());
+//        progressBar.setVisibility(View.GONE);
 
-
-
+        pdfView = findViewById(R.id.pdfView);
+        url = book.getPdf_url();
+        new PDFStream().execute(url);
 
 //        webView = findViewById(R.id.webview);
 //        webView.getSettings().setJavaScriptEnabled(true);
@@ -51,4 +56,38 @@ public class OpenPDF extends AppCompatActivity {
 
 
     }
+
+    class PDFStream extends AsyncTask<String,Void,InputStream>{
+
+        @Override
+        protected InputStream doInBackground(String... strings) {
+            InputStream inputStream = null;
+
+            try{
+                URL urlx = new URL(strings[0]);
+                HttpsURLConnection urlConnection = (HttpsURLConnection) urlx.openConnection();
+                if(urlConnection.getResponseCode() == 200){
+                    inputStream = new BufferedInputStream(urlConnection.getInputStream());
+                }
+            } catch (MalformedURLException e) {
+                return null;
+            } catch (IOException e) {
+                return null;
+            }
+            return inputStream;
+        }
+
+        @Override
+        protected void onPostExecute(InputStream inputStream) {
+            pdfView.fromStream(inputStream)
+                    .enableDoubletap(true)
+                    .defaultPage(0)
+                    .password(null)
+                    .enableAntialiasing(true)
+                    .spacing(10)
+                    .load();;
+        }
+    }
+
+
 }
