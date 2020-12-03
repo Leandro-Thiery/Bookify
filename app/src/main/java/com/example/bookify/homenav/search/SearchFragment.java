@@ -1,11 +1,12 @@
-package com.example.bookify.homenav.dashboard;
+package com.example.bookify.homenav.search;
 
 import android.content.Context;
-import android.media.Image;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,30 +14,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.helper.widget.Layer;
-import androidx.core.app.RemoteInput;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.bookify.Book;
+import com.example.bookify.BookView;
 import com.example.bookify.R;
+import com.example.bookify.homenav.home.HomeFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import org.w3c.dom.Text;
-
-public class DashboardFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
     private ImageButton mSearchButton;
     private EditText mSearchText;
+    private Button mSearchBack;
 
     private RecyclerView mResultList;
     private DatabaseReference mSearchDatabase;
@@ -49,6 +46,7 @@ public class DashboardFragment extends Fragment {
 
         mSearchText = (EditText) root.findViewById(R.id.searchText);
         mSearchButton = (ImageButton) root.findViewById(R.id.searchButton);
+        mSearchBack = (Button) root.findViewById(R.id.searchClear);
 
         mResultList = (RecyclerView) root.findViewById(R.id.resultList);
         mResultList.setHasFixedSize(true);
@@ -62,6 +60,18 @@ public class DashboardFragment extends Fragment {
                 firebaseSearch(searchInput);
             }
         });
+
+        mSearchBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textInput = mSearchText.getText().toString();
+                if (textInput.isEmpty()){
+                    Toast.makeText(getActivity().getApplicationContext(),"Text is Empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    mSearchText.setText("");
+                }
+            }
+        });
         return root;
     }
 
@@ -70,12 +80,12 @@ public class DashboardFragment extends Fragment {
     private void firebaseSearch(String searchInput){
 
         Query firebaseSearchQuery = mSearchDatabase.orderByChild("title").startAt(searchInput).endAt(searchInput + "\uf8ff");
-        FirebaseRecyclerOptions<VerticalRecyclerViewSearch> options =
-                new FirebaseRecyclerOptions.Builder<VerticalRecyclerViewSearch>()
-                    .setQuery(firebaseSearchQuery, VerticalRecyclerViewSearch.class)
+        final FirebaseRecyclerOptions<Book> options =
+                new FirebaseRecyclerOptions.Builder<Book>()
+                    .setQuery(firebaseSearchQuery, Book.class)
                     .build();
 
-        FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<VerticalRecyclerViewSearch, SearchViewHolder>(options) {
+        FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<Book, SearchViewHolder>(options) {
             @NonNull
             @Override
             public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -85,10 +95,18 @@ public class DashboardFragment extends Fragment {
                 return new SearchViewHolder(view);
             }
             @Override
-            protected void onBindViewHolder(@NonNull SearchViewHolder holder, int position, @NonNull VerticalRecyclerViewSearch model) {
+            protected void onBindViewHolder(@NonNull SearchViewHolder holder, final int position, @NonNull final Book model) {
                 holder.setDetails(getActivity().getApplicationContext(),model.getTitle(),model.getCover_url(),model.getAuthor());
-            }
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), BookView.class);
+                        intent.putExtra("Book", model);
+                        getContext().startActivity(intent);
 
+                    }
+                });
+            }
         };
 
         mResultList.setAdapter(adapter);

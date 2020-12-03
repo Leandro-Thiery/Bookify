@@ -8,6 +8,16 @@ public class Book implements Serializable {
     String category;
     String cover_url;
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    String author;
+
     public String getPdf_url() {
         return pdf_url;
     }
