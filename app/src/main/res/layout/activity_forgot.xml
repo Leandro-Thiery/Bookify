@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Forgot">
 
+
+
     <EditText
         android:id="@+id/edtTxtEmail"
         android:layout_width="wrap_content"

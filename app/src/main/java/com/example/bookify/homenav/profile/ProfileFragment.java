@@ -3,11 +3,15 @@ package com.example.bookify.homenav.profile;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +37,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private FirebaseUser user;
     private String userID;
     private DatabaseReference reference;
+    private Toolbar toolbar;
 
     private ProfileViewModel profileViewModel;
 
@@ -48,6 +53,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 textView.setText(s);
             }
         });
+
 
         logout = root.findViewById(R.id.buttonLogout);
         logout.setOnClickListener(this);
@@ -67,9 +73,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 User userProfile = snapshot.getValue(User.class);
 
                 if(userProfile != null){
-                    String name = userProfile.name;
-                    String email = userProfile.email;
-                    if (userProfile.contributor){
+                    String name = userProfile.getName();
+                    String email = userProfile.getEmail();
+                    if (userProfile.isContributor()){
                         textContributor.setText("Contributor : Yes");
                     }else{
                         textContributor.setText("Contributor : No");
@@ -92,6 +98,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
     }
+
 
     @Override
     public void onClick(View v) {

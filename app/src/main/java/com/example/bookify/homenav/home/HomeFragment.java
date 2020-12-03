@@ -2,18 +2,25 @@ package com.example.bookify.homenav.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookify.R;
 import com.example.bookify.Book;
+import com.example.bookify.User;
 import com.example.bookify.homenav.home.models.VerticalModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +35,11 @@ public class HomeFragment extends Fragment {
     RecyclerView verticalRecyclerView;
     VerticalRecyclerViewAdapter adapter;
     ArrayList<VerticalModel> arrayListVertical;
+    Toolbar toolbar;
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
+    private TextView usertext;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,12 +54,34 @@ public class HomeFragment extends Fragment {
 
         arrayListVertical = new ArrayList<>();
 
+
         verticalRecyclerView = root.findViewById(R.id.recycleviewhome);
         verticalRecyclerView.setHasFixedSize(true);
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false));
 
         adapter = new VerticalRecyclerViewAdapter(root.getContext(), arrayListVertical);
         verticalRecyclerView.setAdapter(adapter);
+
+
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.keepSynced(true);
+        userID = user.getUid();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         setData();
         // Set data for Recycle View
@@ -56,6 +90,7 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
 
     private void setData() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("books");

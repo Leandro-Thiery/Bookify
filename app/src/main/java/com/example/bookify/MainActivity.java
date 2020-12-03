@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,11 +24,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText edtTxtPass, edtTxtEmail;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        toolbar = findViewById(R.id.topBar);
+////        setSupportActionBar(toolbar);
 
         Button login = findViewById(R.id.buttonLogin);
         login.setOnClickListener(this);
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         register.setOnClickListener(this);
         Button forgot = findViewById(R.id.buttonForgot);
         forgot.setOnClickListener(this);
+
 
         edtTxtPass = findViewById(R.id.edtTxtPass);
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
