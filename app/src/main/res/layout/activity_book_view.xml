@@ -102,9 +102,30 @@
         android:layout_height="42dp"
         android:layout_marginTop="44dp"
         android:text="Read"
+        android:textSize="20sp"
+        android:fontFamily="@font/athiti_medium"
+        android:textAllCaps="false"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         android:background="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="@+id/bookCategoryText"
         app:layout_constraintTop_toBottomOf="@+id/bookCategoryText" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="184dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="Add to Library"
+        android:textSize="20sp"
+        android:fontFamily="@font/athiti_medium"
+        android:textAllCaps="false"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:background="@color/colorYellow"
+        app:layout_constraintStart_toStartOf="@+id/buttonRead"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRead" />
 </androidx.constraintlayout.widget.ConstraintLayout>

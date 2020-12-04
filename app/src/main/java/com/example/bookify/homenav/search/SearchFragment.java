@@ -22,7 +22,6 @@ import com.bumptech.glide.Glide;
 import com.example.bookify.Book;
 import com.example.bookify.BookView;
 import com.example.bookify.R;
-import com.example.bookify.homenav.home.HomeFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +39,7 @@ public class SearchFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View root = inflater.inflate(R.layout.fragment_search, container, false);
 
         mSearchDatabase = FirebaseDatabase.getInstance().getReference("books");
 

@@ -22,6 +22,10 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import javax.xml.validation.Validator;
 
@@ -33,8 +37,12 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 public class BookView extends AppCompatActivity {
     TextView textTitle, textCategory, textDescription;
     ImageView imageView, imageViewBack;
-    Button buttonRead;
-    String url;
+    Button buttonRead, buttonAddLib;
+    String url, userId;
+
+    DatabaseReference databaseLibrary;
+
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,11 @@ public class BookView extends AppCompatActivity {
         imageView = findViewById(R.id.bookImageView);
         imageViewBack = findViewById(R.id.bookViewBack);
         buttonRead = findViewById(R.id.buttonRead);
+        buttonAddLib = findViewById(R.id.buttonAdd);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userId = user.getUid();
+        databaseLibrary = FirebaseDatabase.getInstance().getReference("Library").child(userId);
 
         textTitle.setText(book.getTitle());
         textCategory.setText(book.getCategory());
@@ -109,6 +122,20 @@ public class BookView extends AppCompatActivity {
             }
         });
 
+        buttonAddLib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String bookTitle = book.getTitle();
+                String bookID = book.getBook_id();
+                saveTitle(bookTitle, bookID);
+            }
+        });
 
+
+    }
+
+    private void saveTitle(String bookTitle, String bookID){
+        Library library = new Library(bookTitle, bookID);
+        databaseLibrary.child(bookID).setValue(library);
     }
 }

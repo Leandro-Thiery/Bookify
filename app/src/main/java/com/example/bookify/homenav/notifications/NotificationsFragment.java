@@ -4,32 +4,77 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookify.Book;
 import com.example.bookify.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class NotificationsFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    LibraryRecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
+    ArrayList<Book> books;
+    String UserID;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_library);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        books = new ArrayList<>();
+        recyclerView = root.findViewById(R.id.recyclerviewlib);
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false));
+        adapter = new LibraryRecyclerViewAdapter(root.getContext(), books);
+        recyclerView.setAdapter(adapter);
+
+        inputData();
         return root;
     }
+
+    private void inputData(){
+        UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference libRef = FirebaseDatabase.getInstance().getReference("Library").child(UserID);
+        final DatabaseReference bookRef = FirebaseDatabase.getInstance().getReference("books");
+
+        libRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dsp : snapshot.getChildren()){
+                    String key = dsp.getKey();
+
+                    DatabaseReference keyBookRef = bookRef.child(key);
+                    keyBookRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Book book;
+                            book = snapshot.getValue(Book.class);
+                            books.add(book);
+                            adapter.notifyDataSetChanged();;
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 }
