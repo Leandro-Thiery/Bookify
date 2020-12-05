@@ -41,6 +41,8 @@
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="14dp"
+            android:ellipsize="end"
+            android:singleLine="true"
             />
 
 
