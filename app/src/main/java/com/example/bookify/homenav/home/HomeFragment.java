@@ -150,7 +150,7 @@ public class HomeFragment extends Fragment {
 
         //Horizontal Recycle View 2 (Category 1)
         verticalModel = new VerticalModel();
-        verticalModel.setTitle("Category 1");
+        verticalModel.setTitle("Category1");
         final ArrayList<Book> arrayListHorizontal1 = new ArrayList<>();
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -173,7 +173,7 @@ public class HomeFragment extends Fragment {
 
         //Horizontal Recycle View 3 (Category 2)
         verticalModel = new VerticalModel();
-        verticalModel.setTitle("Category 2");
+        verticalModel.setTitle("Category2");
         final ArrayList<Book> arrayListHorizontal2 = new ArrayList<>();
         reference2.addValueEventListener(new ValueEventListener() {
             @Override

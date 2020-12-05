@@ -37,12 +37,12 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/colorWhite"
         android:id="@+id/recycleviewhomehorizontal"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:padding="5dp"
         android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_roundall"
         android:orientation="horizontal" />
 
 </LinearLayout>

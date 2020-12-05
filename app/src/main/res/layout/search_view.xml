@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="145dp"
-        android:background="#FFFFFF">
+        android:background="@drawable/bg_roundall">
 
         <ImageView
             android:id="@+id/searchCover"
@@ -19,7 +19,6 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_roundall"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
