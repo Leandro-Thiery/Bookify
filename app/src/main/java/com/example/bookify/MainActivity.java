@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void userLogin() {
         String email = edtTxtEmail.getText().toString().trim();
         String password = edtTxtPass.getText().toString().trim();
+
         if(email.isEmpty()){
             edtTxtEmail.setError("Email is Required");
             edtTxtEmail.requestFocus();
