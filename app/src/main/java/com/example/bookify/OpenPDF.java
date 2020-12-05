@@ -2,6 +2,7 @@ package com.example.bookify;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
+import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 
 
 import java.io.BufferedInputStream;
@@ -24,16 +27,19 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class OpenPDF extends AppCompatActivity {
     PDFView pdfView;
+    Book book;
     ProgressBar progressBar;
     WebView webView;
+    int pageNumber;
     private String url;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p_d_f_view);
         Intent intent = getIntent();
-        final Book book = (Book) intent.getSerializableExtra("Bookpdf");
+        book = (Book) intent.getSerializableExtra("Bookpdf");
         Toast.makeText(this, book.getPdf_url(), Toast.LENGTH_SHORT).show();
         progressBar = findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.VISIBLE);
@@ -70,11 +76,21 @@ public class OpenPDF extends AppCompatActivity {
         protected void onPostExecute(InputStream inputStream) {
             pdfView.fromStream(inputStream)
                     .enableDoubletap(true)
+                    .enableSwipe(true)
+                    .swipeHorizontal(false)
                     .defaultPage(0)
                     .password(null)
+                    .onPageChange(new OnPageChangeListener() {
+                        @Override
+                        public void onPageChanged(int page, int pageCount) {
+                            pageNumber = page;
+                            setTitle(String.format("%s %s / %s", book.getTitle(), page + 1, pageCount));
+                        }
+                    })
+                    .scrollHandle(new DefaultScrollHandle(context))
                     .enableAntialiasing(true)
                     .spacing(10)
-                    .load();;
+                    .load();
         }
     }
 
