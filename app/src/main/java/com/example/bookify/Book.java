@@ -7,6 +7,25 @@ public class Book implements Serializable {
     String description;
     String category;
     String cover_url;
+    String book_id;
+
+    public String getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(String book_id) {
+        this.book_id = book_id;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    String author;
 
 
 

@@ -1,6 +1,7 @@
 package com.example.bookify.homenav.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,10 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookify.HomeActivity;
 import com.example.bookify.R;
 import com.example.bookify.Book;
 import com.example.bookify.User;
 import com.example.bookify.homenav.home.models.VerticalModel;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +41,11 @@ public class HomeFragment extends Fragment {
     Toolbar toolbar;
     private FirebaseUser user;
     private DatabaseReference reference;
+    private DatabaseReference currentUser;
+    private DataSnapshot dsp;
     private String userID;
+    private String userName;
+    private TextView mWelcome;
     private TextView usertext;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,6 +60,7 @@ public class HomeFragment extends Fragment {
         //});
 
         arrayListVertical = new ArrayList<>();
+        mWelcome = (TextView) root.findViewById(R.id.homeWelcome);
 
 
         verticalRecyclerView = root.findViewById(R.id.recycleviewhome);
@@ -69,7 +77,22 @@ public class HomeFragment extends Fragment {
         reference.keepSynced(true);
         userID = user.getUid();
 
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User current = snapshot.getValue(User.class);
+                if (current != null){
+                    userName=current.getName();
+                    mWelcome.setText("Welcome Back, "+userName);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        reference.child(userID).addListenerForSingleValueEvent(eventListener);
 
 
 
