@@ -8,6 +8,10 @@ public class Book implements Serializable {
     String category;
     String cover_url;
 
+
+
+
+
     public String getPdf_url() {
         return pdf_url;
     }
