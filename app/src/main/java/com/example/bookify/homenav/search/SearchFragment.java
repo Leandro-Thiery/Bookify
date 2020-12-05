@@ -55,9 +55,9 @@ public class SearchFragment extends Fragment {
 
         mSearchDatabase = FirebaseDatabase.getInstance().getReference("books");
 
-        mSearchText = (EditText) root.findViewById(R.id.searchText);
-        mSearchButton = (ImageButton) root.findViewById(R.id.searchButton);
-        mSearchBack = (Button) root.findViewById(R.id.searchClear);
+        mSearchText = (EditText) root.findViewById(R.id.librarySearchText);
+        mSearchButton = (ImageButton) root.findViewById(R.id.librarySearchButton);
+        mSearchBack = (Button) root.findViewById(R.id.librarySearchClear);
 
         mResultList = (RecyclerView) root.findViewById(R.id.resultList);
         mResultList.setHasFixedSize(true);
@@ -66,7 +66,6 @@ public class SearchFragment extends Fragment {
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String searchInput = mSearchText.getText().toString();
                 firebaseSearch(searchInput);
             }

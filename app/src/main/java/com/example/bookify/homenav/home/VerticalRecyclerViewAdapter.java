@@ -1,6 +1,7 @@
 package com.example.bookify.homenav.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookify.BookView;
+import com.example.bookify.CategoryView;
 import com.example.bookify.R;
 import com.example.bookify.Book;
 import com.example.bookify.homenav.home.models.VerticalModel;
@@ -50,7 +53,12 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
         holder.buttonMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String category = verticalModel.getTitle();
+                Intent intent = new Intent(context, CategoryView.class);
+                intent.putExtra("Category", category);
                 Toast.makeText(context, verticalModel.getTitle(),Toast.LENGTH_SHORT).show();
+                context.startActivity(intent);
+
             }
         });
 

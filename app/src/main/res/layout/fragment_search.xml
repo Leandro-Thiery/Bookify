@@ -37,7 +37,7 @@
             </androidx.appcompat.widget.Toolbar>
 
             <Button
-                android:id="@+id/searchClear"
+                android:id="@+id/librarySearchClear"
                 android:layout_width="41dp"
                 android:layout_height="26dp"
                 android:background="@android:color/transparent"
@@ -47,11 +47,11 @@
                 android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/searchText"
+                app:layout_constraintStart_toEndOf="@+id/librarySearchText"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/searchText"
+                android:id="@+id/librarySearchText"
                 android:imeOptions="actionSearch"
                 android:layout_width="253dp"
                 android:layout_height="30dp"
@@ -68,12 +68,12 @@
                 android:textColor="#999999"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/searchButton"
+                app:layout_constraintStart_toEndOf="@+id/librarySearchButton"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.521" />
 
             <ImageButton
-                android:id="@+id/searchButton"
+                android:id="@+id/librarySearchButton"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_marginStart="30dp"
@@ -86,7 +86,7 @@
                 android:src="@drawable/ic_baseline_search_24"
                 android:tint="#004DAD"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/searchText"
+                app:layout_constraintEnd_toStartOf="@+id/librarySearchText"
                 app:layout_constraintStart_toStartOf="@+id/search_toolbar"
                 app:layout_constraintTop_toTopOf="parent" />
 
