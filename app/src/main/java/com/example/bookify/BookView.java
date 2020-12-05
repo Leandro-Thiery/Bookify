@@ -35,7 +35,7 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 
 public class BookView extends AppCompatActivity {
-    TextView textTitle, textCategory, textDescription;
+    TextView textTitle, textCategory, textDescription, textAuthor;
     ImageView imageView, imageViewBack;
     Button buttonRead, buttonAddLib;
     String url, userId;
@@ -52,6 +52,7 @@ public class BookView extends AppCompatActivity {
         final Book book = (Book) intent.getSerializableExtra("Book");
         textTitle = findViewById(R.id.bookTitleText);
         textCategory = findViewById(R.id.bookCategoryText);
+        textAuthor = findViewById(R.id.bookAuthorText);
         textDescription = findViewById(R.id.bookDescriptionText);
         imageView = findViewById(R.id.bookImageView);
         imageViewBack = findViewById(R.id.bookViewBack);
@@ -65,6 +66,7 @@ public class BookView extends AppCompatActivity {
         textTitle.setText(book.getTitle());
         textCategory.setText(book.getCategory());
         textDescription.setText(book.getDescription());
+        textAuthor.setText(book.getAuthor());
 
 
         MultiTransformation<Bitmap> multi = new MultiTransformation<>(

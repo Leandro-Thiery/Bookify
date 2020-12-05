@@ -52,6 +52,7 @@
 
             <EditText
                 android:id="@+id/searchText"
+                android:imeOptions="actionSearch"
                 android:layout_width="253dp"
                 android:layout_height="30dp"
                 android:background="@drawable/bg_roundright"

@@ -61,7 +61,6 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
                 new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)
         );
 
-
         Glide.with(context).load(book.getCover_url())
                 .transform(multi).listener(new RequestListener<Drawable>() {
             @Override
@@ -76,21 +75,6 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
                 return false;
             }
         }).placeholder(R.drawable.ic_launcher_foreground).into(holder.imageViewThumb);
-
-
-//        Picasso.get().load(book.getCover_url()).error(R.mipmap.ic_launcher).into(holder.imageViewThumb, new Callback() {
-//            @Override
-//            public void onSuccess() {
-//                holder.progressBar.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//                Toast.makeText(context, "Something wrong happened", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

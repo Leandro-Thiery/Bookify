@@ -2,7 +2,10 @@ package com.example.bookify.homenav.search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.bookify.Book;
 import com.example.bookify.BookView;
 import com.example.bookify.R;
@@ -27,6 +37,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class SearchFragment extends Fragment {
 
@@ -57,6 +69,15 @@ public class SearchFragment extends Fragment {
 
                 String searchInput = mSearchText.getText().toString();
                 firebaseSearch(searchInput);
+            }
+        });
+
+        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                String searchInput = mSearchText.getText().toString();
+                firebaseSearch(searchInput);
+                return false;
             }
         });
 
@@ -135,6 +156,29 @@ public class SearchFragment extends Fragment {
             show_author.setText(showAuthor);
 
             Glide.with(ctx).load(showCover).into(show_cover);
+
+            MultiTransformation<Bitmap> multi = new MultiTransformation<>(
+                    new CenterCrop(),
+                    new RoundedCornersTransformation(10, 0, RoundedCornersTransformation.CornerType.ALL)
+            );
+
+            Glide.with(ctx).load(showCover)
+                    .transform(multi).listener(new RequestListener<Drawable>() {
+                @Override
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                    return false;
+                }
+
+                @Override
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+
+                    return false;
+                }
+            }).placeholder(R.drawable.ic_launcher_foreground).into(show_cover);
+
+
+
+
         }
 
     }

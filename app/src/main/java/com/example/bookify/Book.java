@@ -27,6 +27,10 @@ public class Book implements Serializable {
 
     String author;
 
+
+
+
+
     public String getPdf_url() {
         return pdf_url;
     }
