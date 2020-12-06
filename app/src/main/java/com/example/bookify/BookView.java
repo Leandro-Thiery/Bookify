@@ -1,5 +1,6 @@
 package com.example.bookify;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,10 +23,16 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import javax.xml.validation.Validator;
 
@@ -39,8 +46,9 @@ public class BookView extends AppCompatActivity {
     ImageView imageView, imageViewBack;
     Button buttonRead, buttonAddLib;
     String url, userId;
+    Boolean exist;
 
-    DatabaseReference databaseLibrary;
+    DatabaseReference databaseLibrary, databaseLibrary1;
 
     private FirebaseUser user;
 
@@ -62,11 +70,33 @@ public class BookView extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         userId = user.getUid();
         databaseLibrary = FirebaseDatabase.getInstance().getReference("Library").child(userId);
+        Query query = databaseLibrary.orderByChild("title").equalTo(book.getTitle());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    exist = true;
+                    buttonAddLib.setText("Remove");
+                } else {
+                    exist = false;
+                    buttonAddLib.setText("Add to Library");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         textTitle.setText(book.getTitle());
         textCategory.setText(book.getCategory());
         textDescription.setText(book.getDescription());
         textAuthor.setText(book.getAuthor());
+
+
+
+
 
 
         MultiTransformation<Bitmap> multi = new MultiTransformation<>(
@@ -103,18 +133,6 @@ public class BookView extends AppCompatActivity {
             }
         }).into(imageViewBack);
 
-
-//        Picasso.get().load(book.getCover_url()).placeholder(R.drawable.ic_launcher_background).error(R.mipmap.ic_launcher).into(imageView, new Callback() {
-//            @Override
-//            public void onSuccess() {
-//            }
-//
-//            @Override
-//            public void onError(Exception e) {
-//                Toast.makeText(BookView.this, "Something wrong happened", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         buttonRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,15 +147,39 @@ public class BookView extends AppCompatActivity {
             public void onClick(View v) {
                 String bookTitle = book.getTitle();
                 String bookID = book.getBook_id();
-                saveTitle(bookTitle, bookID);
+                if (exist) {
+                    removeTitle(bookID);
+                    exist = false;
+                    buttonAddLib.setText("Add to Library");
+                } else {
+                    saveTitle(bookTitle, bookID);
+                    exist = true;
+                    buttonAddLib.setText("Remove");
+                }
             }
         });
 
 
     }
 
+    private void removeTitle(String bookID) {
+        databaseLibrary.child(bookID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(BookView.this, "Successfully Removed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void saveTitle(String bookTitle, String bookID){
         Library library = new Library(bookTitle, bookID);
-        databaseLibrary.child(bookID).setValue(library);
+        databaseLibrary.child(bookID).setValue(library).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(BookView.this, "Successfully Added", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

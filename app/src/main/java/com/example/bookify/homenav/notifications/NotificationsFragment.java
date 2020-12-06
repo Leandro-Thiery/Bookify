@@ -88,11 +88,14 @@ public class NotificationsFragment extends Fragment {
                 }
             }
         });
-
-
-
-        inputData();
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        inputData();
+        adapter.notifyDataSetChanged();
     }
 
     private void firebaseSearch(String searchInput) {
@@ -133,8 +136,9 @@ public class NotificationsFragment extends Fragment {
     }
 
     private void inputData(){
+        books.clear();
         UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DatabaseReference libRef = FirebaseDatabase.getInstance().getReference("Library").child(UserID);
+        DatabaseReference libRef = FirebaseDatabase.getInstance().getReference("Library").child(UserID);
         final DatabaseReference bookRef = FirebaseDatabase.getInstance().getReference("books");
 
         libRef.addValueEventListener(new ValueEventListener() {
