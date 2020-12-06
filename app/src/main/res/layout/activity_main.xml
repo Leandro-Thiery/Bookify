@@ -4,57 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_color"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
+        android:background="@drawable/component_14__1"
         android:fontFamily="@font/athiti"
-        android:layout_marginTop="240dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/button_login"
-        android:textSize="20dp"
         android:textColor="@color/colorWhite"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTxtPass" />
 
-    <EditText
-        android:id="@+id/edtTxtPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/text_password"
-        android:inputType="textPersonName|textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtTxtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail" />
-
-    <EditText
-        android:id="@+id/edtTxtEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:hint="@string/text_email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/txtbuttonRegister"
-        android:layout_width="100dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="80dp"
-        android:background="#00FFFFFF"
+        android:layout_width="43dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginTop="384dp"
+        android:background="@drawable/component_18__1"
         android:fontFamily="@font/athiti"
-        android:text="@string/text_register"
+        android:src="@drawable/component_11__1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTxtPass" />
 
@@ -62,14 +37,40 @@
         android:id="@+id/buttonForgot"
         android:layout_width="160dp"
         android:layout_height="24dp"
-        android:layout_marginTop="32dp"
-        android:background="#00FFFFFF"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/component_13__1"
         android:fontFamily="@font/athiti"
-        android:text="@string/button_forgot"
-        app:layout_constraintEnd_toStartOf="@+id/txtbuttonRegister"
-        app:layout_constraintHorizontal_bias="0.868"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtPass" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.391" />
+
+    <EditText
+        android:id="@+id/edtTxtPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/component_10__1"
+        android:ems="10"
+        android:inputType="textPersonName|textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/edtTxtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail" />
+
+    <EditText
+        android:id="@+id/edtTxtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:background="@drawable/component_11__1"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -81,6 +82,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't Have an account?"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="611dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/component_15__1"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="57dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
