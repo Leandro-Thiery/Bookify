@@ -3,11 +3,15 @@ package com.example.bookify.homenav.profile;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,10 +33,11 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private Button logout;
-    private TextView profileTextEmail, profileTextName;
+    private TextView profileTextEmail, profileTextName, textContributor;
     private FirebaseUser user;
     private String userID;
     private DatabaseReference reference;
+    private Toolbar toolbar;
 
     private ProfileViewModel profileViewModel;
 
@@ -49,11 +54,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+
         logout = root.findViewById(R.id.buttonLogout);
         logout.setOnClickListener(this);
 
         profileTextEmail = root.findViewById(R.id.profileTextEmail);
         profileTextName = root.findViewById(R.id.profileTextName);
+        textContributor = root.findViewById(R.id.textContributor);
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -65,8 +73,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 User userProfile = snapshot.getValue(User.class);
 
                 if(userProfile != null){
-                    String name = userProfile.name;
-                    String email = userProfile.email;
+                    String name = userProfile.getName();
+                    String email = userProfile.getEmail();
+                    if (userProfile.isContributor()){
+                        textContributor.setText("Contributor : Yes");
+                    }else{
+                        textContributor.setText("Contributor : No");
+                    }
 
                     profileTextName.setText("Name : " + name);
                     profileTextEmail.setText("Email : " + email);
@@ -86,6 +99,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -94,6 +108,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 Toast.makeText(getActivity(), "Successfully Logout!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
+                getActivity().finish();
                 break;
             default:
                 break;

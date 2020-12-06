@@ -39,8 +39,6 @@ public class Forgot extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void resetpassword() {
@@ -64,7 +62,7 @@ public class Forgot extends AppCompatActivity {
                     Toast.makeText(Forgot.this, "Please check your email for password reset.", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }else{
-                    Toast.makeText(Forgot.this, "Something wrong happened", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Forgot.this, "Something wrong happened, please try again", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
 
