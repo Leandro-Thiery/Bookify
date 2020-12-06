@@ -24,7 +24,6 @@ import com.bumptech.glide.request.target.Target;
 import com.example.bookify.Book;
 import com.example.bookify.BookView;
 import com.example.bookify.R;
-import com.example.bookify.homenav.home.VerticalRecyclerViewAdapter;
 
 import java.util.ArrayList;
 
