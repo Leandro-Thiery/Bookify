@@ -11,7 +11,7 @@
         android:id="@+id/buttonLogin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/component_14__1"
         android:fontFamily="@font/athiti"
         android:textColor="@color/colorWhite"
@@ -25,13 +25,13 @@
         android:id="@+id/txtbuttonRegister"
         android:layout_width="43dp"
         android:layout_height="21dp"
-        android:layout_marginEnd="112dp"
-        android:layout_marginTop="384dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginTop="148dp"
         android:background="@drawable/component_18__1"
         android:fontFamily="@font/athiti"
         android:src="@drawable/component_11__1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtPass" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
     <Button
         android:id="@+id/buttonForgot"
@@ -44,7 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.327" />
 
     <EditText
         android:id="@+id/edtTxtPass"
@@ -54,10 +54,12 @@
         android:background="@drawable/component_10__1"
         android:ems="10"
         android:inputType="textPersonName|textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/buttonForgot"
         app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtTxtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail"
+        app:layout_constraintVertical_bias="0.116" />
 
     <EditText
         android:id="@+id/edtTxtEmail"
@@ -87,18 +89,21 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="52dp"
+        android:layout_marginTop="148dp"
         android:text="Don't Have an account?"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="611dp" />
+        app:layout_constraintEnd_toStartOf="@+id/txtbuttonRegister"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/component_15__1"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="57dp" />
+        app:layout_constraintBottom_toTopOf="@+id/edtTxtEmail"
+        tools:layout_editor_absoluteX="66dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
