@@ -100,10 +100,11 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="44dp"
+        android:layout_marginStart="64dp"
         android:background="@drawable/component_15__1"
         app:layout_constraintBottom_toTopOf="@+id/edtTxtEmail"
-        tools:layout_editor_absoluteX="66dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
