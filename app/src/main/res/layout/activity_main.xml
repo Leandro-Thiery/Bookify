@@ -10,9 +10,11 @@
         android:id="@+id/buttonLogin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/athiti"
         android:layout_marginTop="240dp"
         android:background="@color/colorPrimary"
         android:text="@string/button_login"
+        android:textSize="20dp"
         android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
 
@@ -49,8 +51,9 @@
         android:layout_width="100dp"
         android:layout_height="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="80dp"
         android:background="#00FFFFFF"
+        android:fontFamily="@font/athiti"
         android:text="@string/text_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTxtPass" />
@@ -61,9 +64,10 @@
         android:layout_height="24dp"
         android:layout_marginTop="32dp"
         android:background="#00FFFFFF"
+        android:fontFamily="@font/athiti"
         android:text="@string/button_forgot"
         app:layout_constraintEnd_toStartOf="@+id/txtbuttonRegister"
-        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTxtPass" />
 

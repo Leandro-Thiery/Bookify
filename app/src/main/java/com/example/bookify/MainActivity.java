@@ -26,13 +26,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ProgressBar progressBar;
     private Toolbar toolbar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        toolbar = findViewById(R.id.topBar);
-////        setSupportActionBar(toolbar);
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Button login = findViewById(R.id.buttonLogin);
         login.setOnClickListener(this);
         Button register = findViewById(R.id.txtbuttonRegister);
@@ -40,12 +39,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button forgot = findViewById(R.id.buttonForgot);
         forgot.setOnClickListener(this);
 
-
         edtTxtPass = findViewById(R.id.edtTxtPass);
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
         progressBar = findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
+        if (user != null) {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -108,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
 
                     progressBar.setVisibility(View.GONE);
-
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                     if(user.isEmailVerified()){

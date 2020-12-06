@@ -11,6 +11,7 @@
     <EditText
         android:id="@+id/edtTxtEmail"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/athiti"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:ems="10"
@@ -25,6 +26,9 @@
         android:id="@+id/buttonResetPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/athiti"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
         android:layout_marginTop="100dp"
         android:text="@string/button_resetpass"
         app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"

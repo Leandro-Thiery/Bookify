@@ -38,9 +38,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
         edtTxtPass = findViewById(R.id.edtTxtPass);
 
-        txtName = findViewById(R.id.splashtxtName);
-        txtPass = findViewById(R.id.splashTxtPass);
-        txtEmail = findViewById(R.id.splashTxtEmail);
 
         progressBar = findViewById(R.id.progressBar);
 
