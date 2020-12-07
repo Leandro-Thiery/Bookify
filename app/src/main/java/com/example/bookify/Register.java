@@ -117,7 +117,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         }
                     }
                 });
-        
+
         Intent intent = new Intent(Register.this, MainActivity.class);
         startActivity(intent);
     }
