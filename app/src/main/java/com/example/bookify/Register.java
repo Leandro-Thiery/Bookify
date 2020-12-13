@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
     private EditText edtTxtName, edtTxtPass, edtTxtEmail;
-    private TextView txtName, txtPass, txtEmail;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
@@ -117,7 +116,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         }
                     }
                 });
-
         Intent intent = new Intent(Register.this, MainActivity.class);
         startActivity(intent);
     }
