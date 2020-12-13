@@ -17,6 +17,7 @@
             android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/athiti"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
@@ -29,10 +30,11 @@
             android:layout_width="wrap_content"
             android:layout_height="42dp"
             android:layout_alignParentEnd="true"
+            android:fontFamily="@font/athiti"
             android:layout_centerVertical="true"
             android:text="More"
-            android:textColor="@color/colorWhite"
-            android:background="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            android:background="#00000000"
             />
     </RelativeLayout>
 

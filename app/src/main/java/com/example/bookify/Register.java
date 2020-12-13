@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
     private EditText edtTxtName, edtTxtPass, edtTxtEmail;
-    private TextView txtName, txtPass, txtEmail;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
@@ -38,9 +37,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
         edtTxtPass = findViewById(R.id.edtTxtPass);
 
-        txtName = findViewById(R.id.splashtxtName);
-        txtPass = findViewById(R.id.splashTxtPass);
-        txtEmail = findViewById(R.id.splashTxtEmail);
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -120,10 +116,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         }
                     }
                 });
-
-        txtName.setText("Name = " + edtTxtName.getText().toString());
-        txtPass.setText("Password = " + edtTxtPass.getText().toString());
-        txtEmail.setText("Email = " + edtTxtEmail.getText().toString());
         Intent intent = new Intent(Register.this, MainActivity.class);
         startActivity(intent);
     }
