@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.bookify.MainActivity;
 import com.example.bookify.R;
+import com.example.bookify.Upload;
 import com.example.bookify.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
-    private Button logout;
+    private Button logout, upload;
     private TextView profileTextEmail, profileTextName, textContributor;
     private FirebaseUser user;
     private String userID;
@@ -61,6 +62,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         profileTextEmail = root.findViewById(R.id.profileTextEmail);
         profileTextName = root.findViewById(R.id.profileTextName);
         textContributor = root.findViewById(R.id.textContributor);
+        upload = root.findViewById(R.id.buttonUpload);
+        upload.setOnClickListener(this);
+        upload.setVisibility(View.GONE);
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -77,6 +81,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     String email = userProfile.getEmail();
                     if (userProfile.isContributor()){
                         textContributor.setText("Contributor : Yes");
+                        upload.setVisibility(View.VISIBLE);
+
                     }else{
                         textContributor.setText("Contributor : No");
                     }
@@ -110,6 +116,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 getActivity().finish();
                 break;
+            case R.id.buttonUpload:
+                Intent intentupload = new Intent(getActivity(), Upload.class);
+                startActivity(intentupload);
             default:
                 break;
         }
