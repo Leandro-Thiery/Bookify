@@ -132,9 +132,8 @@ public class HomeFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Book book;
                 for (DataSnapshot snapshot1 : snapshot.getChildren() ){
-                    book = snapshot1.getValue(Book.class);
+                    Book book = snapshot1.getValue(Book.class);
                     arrayListHorizontal.add(book);
                     adapter.notifyDataSetChanged();
                 }
@@ -155,9 +154,8 @@ public class HomeFragment extends Fragment {
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Book book;
                 for (DataSnapshot snapshot1 : snapshot.getChildren() ){
-                    book = snapshot1.getValue(Book.class);
+                    Book book = snapshot1.getValue(Book.class);
                     arrayListHorizontal1.add(book);
                     adapter.notifyDataSetChanged();
                 }
@@ -178,9 +176,8 @@ public class HomeFragment extends Fragment {
         reference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Book book;
                 for (DataSnapshot snapshot1 : snapshot.getChildren() ){
-                    book = snapshot1.getValue(Book.class);
+                    Book book = snapshot1.getValue(Book.class);
                     arrayListHorizontal2.add(book);
                     adapter.notifyDataSetChanged();
                 }
