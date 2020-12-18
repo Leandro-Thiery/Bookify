@@ -13,10 +13,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -37,10 +40,12 @@ import com.google.firebase.storage.UploadTask;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
-public class Upload extends AppCompatActivity implements View.OnClickListener {
+public class Upload extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private EditText edtTitle, edtAuthor, editDescription;
     private Button upload;
     private ImageView imageView;
+    private Spinner spinnerCategory;
+    String category;
     String cover_url;
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -48,7 +53,11 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
-        
+        spinnerCategory = findViewById(R.id.editCategory);
+        String[] category_list = getResources().getStringArray(R.array.category_list);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, category_list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(arrayAdapter);
         edtTitle = findViewById(R.id.editTitle);
         edtAuthor = findViewById(R.id.editAuthor);
         editDescription = findViewById(R.id.editDescription);
@@ -56,6 +65,11 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         upload = findViewById(R.id.buttonUploadPDF);
         upload.setOnClickListener(this);
         imageView.setOnClickListener(this);
+
+        spinnerCategory.setOnItemSelectedListener(this);
+
+
+
 
         storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference("books");
@@ -167,7 +181,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
                 while(!uri.isComplete());
                 Uri url = uri.getResult();
                 String key = databaseReference.push().getKey();
-                Book book = new Book(edtTitle.getText().toString(), editDescription.getText().toString(), "Category1", cover_url, key, edtAuthor.getText().toString(), url.toString());
+                Book book = new Book(edtTitle.getText().toString(), editDescription.getText().toString(), category, cover_url, key, edtAuthor.getText().toString(), url.toString());
                 databaseReference.child(key).setValue(book);
                 pd.dismiss();
                 finish();
@@ -179,5 +193,15 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
                 pd.setMessage("Percentage: " + (int) percent + "%");
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        category = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
