@@ -1,5 +1,7 @@
 package com.example.bookify.homenav.profile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -55,7 +57,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
         logout = root.findViewById(R.id.buttonLogout);
         logout.setOnClickListener(this);
 
@@ -110,11 +111,30 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.buttonLogout:
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                Toast.makeText(getActivity(), "Successfully Logout!", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-                getActivity().finish();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Are you sure you want to Logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                Toast.makeText(getActivity(), "Successfully Logout!", Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+                        })
+                        .setNegativeButton("No, Nevermind", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = builder.create();
+                builder.show();
+
                 break;
             case R.id.buttonUpload:
                 Intent intentupload = new Intent(getActivity(), Upload.class);
