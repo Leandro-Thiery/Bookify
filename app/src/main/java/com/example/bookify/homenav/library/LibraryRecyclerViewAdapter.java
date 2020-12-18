@@ -1,4 +1,4 @@
-package com.example.bookify.homenav.notifications;
+package com.example.bookify.homenav.library;
 
 import android.content.Context;
 import android.content.Intent;
