@@ -2,8 +2,10 @@ package com.example.bookify;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -44,11 +46,11 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 public class BookView extends AppCompatActivity {
     TextView textTitle, textCategory, textDescription, textAuthor;
     ImageView imageView, imageViewBack;
-    Button buttonRead, buttonAddLib;
+    Button buttonRead, buttonAddLib, buttonDelete;
     String url, userId;
-    Boolean exist;
+    Boolean exist, contributor;
 
-    DatabaseReference databaseLibrary, databaseLibrary1;
+    DatabaseReference databaseLibrary, databaseContributor;
 
     private FirebaseUser user;
 
@@ -66,6 +68,7 @@ public class BookView extends AppCompatActivity {
         imageViewBack = findViewById(R.id.bookViewBack);
         buttonRead = findViewById(R.id.buttonRead);
         buttonAddLib = findViewById(R.id.buttonAdd);
+        buttonDelete = findViewById(R.id.buttonDelete);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         userId = user.getUid();
@@ -80,6 +83,26 @@ public class BookView extends AppCompatActivity {
                 } else {
                     exist = false;
                     buttonAddLib.setText("Add to Library");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        databaseContributor = FirebaseDatabase.getInstance().getReference("Contributor").child(userId);
+        Query queryContributor = databaseContributor.orderByChild("title").equalTo(book.getTitle());
+        queryContributor.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    contributor = true;
+                    buttonDelete.setVisibility(View.VISIBLE);
+                } else {
+                    exist = false;
+                    buttonDelete.setVisibility(View.GONE);
                 }
             }
 
@@ -156,6 +179,46 @@ public class BookView extends AppCompatActivity {
                     exist = true;
                     buttonAddLib.setText("Remove");
                 }
+            }
+        });
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(BookView.this);
+                builder.setMessage("Are you sure you want to delete " + book.getTitle())
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String userId = FirebaseAuth.getInstance().getUid();
+                                Toast.makeText(BookView.this, "Deleting " + book.getTitle(), Toast.LENGTH_SHORT).show();
+                                DatabaseReference databaseContributor = FirebaseDatabase.getInstance().getReference("Contributor").child(userId);
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("books").child(book.getBook_id());
+                                databaseReference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                    }
+                                });
+                                databaseContributor.child(book.book_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                    }
+                                });
+                                finish();
+
+                            }
+                        })
+                        .setNegativeButton("No, Nevermind", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
 

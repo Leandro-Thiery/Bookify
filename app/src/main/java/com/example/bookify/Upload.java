@@ -29,8 +29,10 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -173,6 +175,10 @@ public class Upload extends AppCompatActivity implements View.OnClickListener, A
 
     private void uploadPDF(Uri data) {
         final ProgressDialog pd = new ProgressDialog(this);
+        String userId = FirebaseAuth.getInstance().getUid();
+        DatabaseReference contributor = FirebaseDatabase.getInstance().getReference("Contributor").child(userId);
+        final String key = databaseReference.push().getKey();
+
         StorageReference reference = storageReference.child("uploads/"+edtTitle.getText().toString()+".pdf");
         reference.putFile(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -180,9 +186,9 @@ public class Upload extends AppCompatActivity implements View.OnClickListener, A
                 Task<Uri> uri = taskSnapshot.getStorage().getDownloadUrl();
                 while(!uri.isComplete());
                 Uri url = uri.getResult();
-                String key = databaseReference.push().getKey();
-                Book book = new Book(edtTitle.getText().toString(), editDescription.getText().toString(), category, cover_url, key, edtAuthor.getText().toString(), url.toString());
-                databaseReference.child(key).setValue(book);
+                String book_id = key;
+                Book book = new Book(edtTitle.getText().toString(), editDescription.getText().toString(), category, cover_url, book_id, edtAuthor.getText().toString(), url.toString());
+                databaseReference.child(book_id).setValue(book);
                 pd.dismiss();
                 finish();
             }
@@ -193,6 +199,17 @@ public class Upload extends AppCompatActivity implements View.OnClickListener, A
                 pd.setMessage("Percentage: " + (int) percent + "%");
             }
         });
+
+        Library library = new Library(edtTitle.getText().toString(), key);
+        contributor.child(key).setValue(library).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(Upload.this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -202,6 +219,6 @@ public class Upload extends AppCompatActivity implements View.OnClickListener, A
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        category = "Other";
     }
 }

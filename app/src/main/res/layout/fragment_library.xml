@@ -74,7 +74,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewlib"
         android:layout_width="match_parent"

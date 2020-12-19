@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.bookify.Delete;
 import com.example.bookify.MainActivity;
 import com.example.bookify.R;
 import com.example.bookify.Upload;
@@ -35,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
-    private Button logout, upload;
+    private Button logout, upload, delete;
     private TextView profileTextEmail, profileTextName, textContributor;
     private FirebaseUser user;
     private String userID;
@@ -67,6 +68,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         upload.setOnClickListener(this);
         upload.setVisibility(View.GONE);
 
+        delete = root.findViewById(R.id.buttonDelete);
+        delete.setOnClickListener(this);
+        delete.setVisibility(View.GONE);
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -83,6 +88,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     if (userProfile.isContributor()){
                         textContributor.setText("Contributor : Yes");
                         upload.setVisibility(View.VISIBLE);
+                        delete.setVisibility(View.VISIBLE);
 
                     }else{
                         textContributor.setText("Contributor : No");
@@ -133,12 +139,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         });
 
                 AlertDialog alertDialog = builder.create();
-                builder.show();
+                alertDialog.show();
 
                 break;
             case R.id.buttonUpload:
                 Intent intentupload = new Intent(getActivity(), Upload.class);
                 startActivity(intentupload);
+                break;
+            case R.id.buttonDelete:
+                Intent intentdelete = new Intent(getActivity(), Delete.class);
+                startActivity(intentdelete);
+                break;
             default:
                 break;
         }
