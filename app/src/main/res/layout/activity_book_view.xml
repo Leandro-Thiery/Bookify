@@ -169,7 +169,7 @@
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/bookImageView"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="@+id/bookImageView"

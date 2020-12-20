@@ -48,7 +48,7 @@ public class BookView extends AppCompatActivity {
     ImageView imageView, imageViewBack;
     Button buttonRead, buttonAddLib, buttonDelete;
     String url, userId;
-    Boolean exist, contributor;
+    static Boolean exist, contributor;
 
     DatabaseReference databaseLibrary, databaseContributor;
 
@@ -101,7 +101,7 @@ public class BookView extends AppCompatActivity {
                     contributor = true;
                     buttonDelete.setVisibility(View.VISIBLE);
                 } else {
-                    exist = false;
+                    contributor = false;
                     buttonDelete.setVisibility(View.GONE);
                 }
             }
@@ -170,14 +170,14 @@ public class BookView extends AppCompatActivity {
             public void onClick(View v) {
                 String bookTitle = book.getTitle();
                 String bookID = book.getBook_id();
-                if (exist) {
-                    removeTitle(bookID);
-                    exist = false;
-                    buttonAddLib.setText("Add to Library");
-                } else {
+                if (!exist) {
                     saveTitle(bookTitle, bookID);
                     exist = true;
                     buttonAddLib.setText("Remove");
+                } else {
+                    removeTitle(bookID);
+                    exist = false;
+                    buttonAddLib.setText("Add to Library");
                 }
             }
         });
