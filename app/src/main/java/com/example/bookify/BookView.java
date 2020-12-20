@@ -207,6 +207,14 @@ public class BookView extends AppCompatActivity {
 
                                     }
                                 });
+                                databaseContributor = FirebaseDatabase.getInstance().getReference("Library").child(userId);
+                                databaseContributor.child(book.book_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                    }
+                                });
+
                                 finish();
 
                             }
