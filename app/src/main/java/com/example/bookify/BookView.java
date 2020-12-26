@@ -73,7 +73,7 @@ public class BookView extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         userId = user.getUid();
         databaseLibrary = FirebaseDatabase.getInstance().getReference("Library").child(userId);
-        Query query = databaseLibrary.orderByChild("title").equalTo(book.getTitle());
+        Query query = databaseLibrary.orderByChild("lib_book_id").equalTo(book.getBook_id());
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -93,7 +93,7 @@ public class BookView extends AppCompatActivity {
         });
 
         databaseContributor = FirebaseDatabase.getInstance().getReference("Contributor").child(userId);
-        Query queryContributor = databaseContributor.orderByChild("title").equalTo(book.getTitle());
+        Query queryContributor = databaseContributor.orderByChild("lib_book_id").equalTo(book.getBook_id());
         queryContributor.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
