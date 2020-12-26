@@ -9,13 +9,14 @@
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="173dp"
-        android:layout_height="73dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_marginTop="56dp"
-        android:background="@drawable/component_14__1"
+        android:background="@drawable/button_darkblue"
         android:fontFamily="@font/athiti"
         android:textColor="@color/colorWhite"
-        android:textSize="20dp"
+        android:text="Sign Up"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"

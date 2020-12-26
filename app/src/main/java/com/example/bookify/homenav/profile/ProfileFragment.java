@@ -42,7 +42,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private String userID;
     private DatabaseReference reference;
     private Toolbar toolbar;
-    
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

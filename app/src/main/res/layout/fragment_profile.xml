@@ -7,45 +7,28 @@
     android:background="@drawable/gradient_color"
     tools:context=".homenav.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.808" />
 
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="134dp"
         android:layout_height="57dp"
-        android:background="@drawable/component_20__1"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/button_darkblue"
         android:text="@string/button_logout"
-        android:textColor="@color/colorWhite"
         android:textAlignment="center"
+        android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/text_profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintTop_toBottomOf="@id/buttonUpload" />
 
     <Button
         android:id="@+id/buttonUpload"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
-        android:background="@color/colorWhite"
+        android:background="@drawable/bg_roundall"
         android:text="Upload"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
@@ -60,7 +43,7 @@
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
-        android:background="@color/colorWhite"
+        android:background="@drawable/bg_roundall"
         android:text="Delete"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
