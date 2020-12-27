@@ -134,6 +134,7 @@ public class LibraryFragment extends Fragment {
 
     private void inputData(){
         books.clear();
+        totalBooks.setText("0 Books");
         UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Query libRef = FirebaseDatabase.getInstance().getReference("Library").child(UserID).orderByChild("title");
         final DatabaseReference bookRef = FirebaseDatabase.getInstance().getReference("books");
@@ -142,24 +143,38 @@ public class LibraryFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dsp : snapshot.getChildren()){
-                    String key = dsp.getKey();
 
-                    DatabaseReference keyBookRef = bookRef.child(key);
-                    keyBookRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            Book book;
-                            book = snapshot.getValue(Book.class);
-                            books.add(book);
-                            totalBooks.setText(String.valueOf(books.size()) + " Books");
-                            adapter.notifyDataSetChanged();
-                        }
+                    if(dsp.exists()){
+                        String key = dsp.getKey();
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                        DatabaseReference keyBookRef = bookRef.child(key);
+                        keyBookRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    Book book;
+                                    book = snapshot.getValue(Book.class);
+                                    books.add(book);
+                                    totalBooks.setText(String.valueOf(books.size()) + " Books");
+                                    adapter.notifyDataSetChanged();
+                                }
+                                else{
+                                    totalBooks.setText("0 Books");
+                                }
 
-                        }
-                    });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    } else{
+                        totalBooks.setText("0 Books");
+                    }
+
+
+
                 }
             }
 
