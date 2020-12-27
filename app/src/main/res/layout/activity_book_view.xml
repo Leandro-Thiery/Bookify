@@ -5,7 +5,6 @@
     android:background="@color/colorWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".BookView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +13,7 @@
         <ImageView
             android:id="@+id/bookViewBack"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="225dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +22,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="225dp"
             android:background="#66000000"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
