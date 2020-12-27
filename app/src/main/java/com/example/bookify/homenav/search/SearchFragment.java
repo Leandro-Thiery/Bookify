@@ -45,7 +45,6 @@ public class SearchFragment extends Fragment {
     private ImageButton mSearchButton;
     private EditText mSearchText;
     private Button mSearchBack;
-
     private RecyclerView mResultList;
     private DatabaseReference mSearchDatabase;
 

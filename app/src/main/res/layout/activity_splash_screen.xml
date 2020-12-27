@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/gradient_color">
 
     <ImageView
         android:id="@+id/logo"
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
 
         android:layout_alignParentEnd="true"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/logo_5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,5 @@
-package com.example.bookify.homenav.notifications;
+package com.example.bookify.homenav.library;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -15,15 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookify.Book;
-import com.example.bookify.BookView;
 import com.example.bookify.R;
-import com.example.bookify.homenav.search.SearchFragment;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,19 +28,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class NotificationsFragment extends Fragment {
+public class LibraryFragment extends Fragment {
 
-    LibraryRecyclerViewAdapter adapter;
-    RecyclerView recyclerView;
-    ArrayList<Book> books;
-    String UserID;
+    private LibraryRecyclerViewAdapter adapter;
+    private RecyclerView recyclerView;
+    static ArrayList<Book> books;
+    private String UserID;
     private ImageButton searchButton;
     private EditText searchText;
     private Button searchClear;
+    private TextView totalBooks;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        View root = inflater.inflate(R.layout.fragment_library, container, false);
         books = new ArrayList<>();
         recyclerView = root.findViewById(R.id.recyclerviewlib);
         recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 3));
@@ -56,6 +51,7 @@ public class NotificationsFragment extends Fragment {
         searchButton = root.findViewById(R.id.librarySearchButton);
         searchClear = root.findViewById(R.id.librarySearchClear);
         searchText = root.findViewById(R.id.librarySearchText);
+        totalBooks = root.findViewById(R.id.text_total_books);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +91,7 @@ public class NotificationsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         inputData();
+
         adapter.notifyDataSetChanged();
     }
 
@@ -138,7 +135,7 @@ public class NotificationsFragment extends Fragment {
     private void inputData(){
         books.clear();
         UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference libRef = FirebaseDatabase.getInstance().getReference("Library").child(UserID);
+        Query libRef = FirebaseDatabase.getInstance().getReference("Library").child(UserID).orderByChild("title");
         final DatabaseReference bookRef = FirebaseDatabase.getInstance().getReference("books");
 
         libRef.addValueEventListener(new ValueEventListener() {
@@ -154,7 +151,8 @@ public class NotificationsFragment extends Fragment {
                             Book book;
                             book = snapshot.getValue(Book.class);
                             books.add(book);
-                            adapter.notifyDataSetChanged();;
+                            totalBooks.setText(String.valueOf(books.size()) + " Books");
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -165,11 +163,13 @@ public class NotificationsFragment extends Fragment {
                 }
             }
 
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
     }
 
 }

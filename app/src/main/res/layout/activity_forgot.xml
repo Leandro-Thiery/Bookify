@@ -24,11 +24,12 @@
 
     <Button
         android:id="@+id/buttonResetPass"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/athiti"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button_blue"
         android:textColor="@color/colorWhite"
+        android:textAllCaps="false"
         android:layout_marginTop="100dp"
         android:text="@string/button_resetpass"
         app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"

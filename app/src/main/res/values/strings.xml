@@ -34,5 +34,13 @@
 
     <string name="title">"Title"</string>
 
+    <string-array name="category_list">
+        <item>Category1</item>
+        <item>Category2</item>
+        <item>Category3</item>
+        <item>Category4</item>
+        <item>Category5</item>
+    </string-array>
+
 
 </resources>

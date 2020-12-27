@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle;
 
@@ -26,10 +28,9 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class OpenPDF extends AppCompatActivity {
-    PDFView pdfView;
-    Book book;
-    ProgressBar progressBar;
-    WebView webView;
+    private PDFView pdfView;
+    private Book book;
+    private ProgressBar progressBar;
     int pageNumber;
     private String url;
     Context context = this;
@@ -38,16 +39,15 @@ public class OpenPDF extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_p_d_f_view);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         Intent intent = getIntent();
         book = (Book) intent.getSerializableExtra("Bookpdf");
-        Toast.makeText(this, book.getPdf_url(), Toast.LENGTH_SHORT).show();
         progressBar = findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.VISIBLE);
         pdfView = findViewById(R.id.pdfView);
+        pdfView.setVisibility(View.INVISIBLE);
         url = book.getPdf_url();
         new PDFStream().execute(url);
-        progressBar.setVisibility(View.GONE);
-        //TODO Load PDF from URL Here, url from book.pdf_url
 
 
     }
@@ -90,8 +90,17 @@ public class OpenPDF extends AppCompatActivity {
                     .scrollHandle(new DefaultScrollHandle(context))
                     .enableAntialiasing(true)
                     .spacing(10)
+                    .onLoad(new OnLoadCompleteListener() {
+                        @Override
+                        public void loadComplete(int nbPages) {
+                            progressBar.setVisibility(View.GONE);
+                            pdfView.setVisibility(View.VISIBLE);
+                        }
+                    })
                     .load();
+            progressBar.setVisibility(View.GONE);
         }
+
     }
 
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Upload">
+
+    <Button
+        android:id="@+id/buttonUploadPDF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Upload"
+        app:layout_constraintEnd_toEndOf="@+id/editDescription"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editDescription"
+        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
+
+    <ImageView
+        android:id="@+id/imageCover"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_launcher" />
+
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@+id/imageCover"
+        app:layout_constraintTop_toTopOf="@+id/imageCover" />
+
+    <EditText
+        android:id="@+id/editAuthor"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Author"
+        app:layout_constraintStart_toStartOf="@+id/editTitle"
+        app:layout_constraintTop_toBottomOf="@+id/editTitle" />
+
+    <Spinner
+        android:id="@+id/editCategory"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/editAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/editAuthor"/>
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:hint="Descirption"
+        android:maxLength="500"
+        app:layout_constraintEnd_toEndOf="@+id/editCategory"
+        app:layout_constraintHeight_max="250dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageCover"
+        app:layout_constraintTop_toBottomOf="@+id/imageCover" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package com.example.bookify.homenav.profile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,8 +21,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.bookify.Delete;
 import com.example.bookify.MainActivity;
 import com.example.bookify.R;
+import com.example.bookify.Upload;
 import com.example.bookify.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,28 +36,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
-    private Button logout;
+    private Button logout, upload, delete;
     private TextView profileTextEmail, profileTextName, textContributor;
     private FirebaseUser user;
     private String userID;
     private DatabaseReference reference;
-    private Toolbar toolbar;
 
-    private ProfileViewModel profileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        profileViewModel =
-                ViewModelProviders.of(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
-        final TextView textView = root.findViewById(R.id.text_profile);
-        profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
 
         logout = root.findViewById(R.id.buttonLogout);
         logout.setOnClickListener(this);
@@ -61,6 +53,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         profileTextEmail = root.findViewById(R.id.profileTextEmail);
         profileTextName = root.findViewById(R.id.profileTextName);
         textContributor = root.findViewById(R.id.textContributor);
+        upload = root.findViewById(R.id.buttonUpload);
+        upload.setOnClickListener(this);
+        upload.setVisibility(View.GONE);
+
+        delete = root.findViewById(R.id.buttonDelete);
+        delete.setOnClickListener(this);
+        delete.setVisibility(View.GONE);
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -77,6 +76,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     String email = userProfile.getEmail();
                     if (userProfile.isContributor()){
                         textContributor.setText("Contributor : Yes");
+                        upload.setVisibility(View.VISIBLE);
+                        delete.setVisibility(View.VISIBLE);
+
                     }else{
                         textContributor.setText("Contributor : No");
                     }
@@ -104,11 +106,38 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.buttonLogout:
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                Toast.makeText(getActivity(), "Successfully Logout!", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-                getActivity().finish();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Are you sure you want to Logout?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                Toast.makeText(getActivity(), "Successfully Logout!", Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+                        })
+                        .setNegativeButton("No, Nevermind", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                break;
+            case R.id.buttonUpload:
+                Intent intentupload = new Intent(getActivity(), Upload.class);
+                startActivity(intentupload);
+                break;
+            case R.id.buttonDelete:
+                Intent intentdelete = new Intent(getActivity(), Delete.class);
+                startActivity(intentdelete);
                 break;
             default:
                 break;

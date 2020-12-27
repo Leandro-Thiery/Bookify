@@ -4,63 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_color"
     tools:context=".homenav.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="134dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/button_darkblue"
         android:text="@string/button_logout"
-        app:layout_constraintBottom_toTopOf="@+id/text_profile"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/buttonUpload" />
 
-    <TextView
-        android:id="@+id/profileTextName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/text_name"
-        app:layout_constraintEnd_toEndOf="@+id/buttonLogout"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="@+id/buttonLogout"
-        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/buttonUpload"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_roundall"
+        android:text="Upload"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/profileTextEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profileTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/profileTextEmail" />
 
-    <TextView
-        android:id="@+id/profileTextEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_email"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLogout"
-        app:layout_constraintEnd_toEndOf="@+id/buttonLogout"
-        app:layout_constraintStart_toStartOf="@+id/buttonLogout"
-        app:layout_constraintTop_toBottomOf="@+id/profileTextName" />
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_roundall"
+        android:text="Delete"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/profileTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/profileTextEmail" />
 
     <TextView
         android:id="@+id/textContributor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="80dp"
         android:text="@string/text_contributor"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="@+id/buttonLogout"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/buttonLogout"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogout" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="112dp"
+        android:layout_height="135dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/component_22__1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="203dp"
+        android:layout_height="97dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/component_23__1"
+        app:layout_constraintBottom_toTopOf="@+id/profileTextName"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.653" />
+
+    <TextView
+        android:id="@+id/profileTextName"
+        android:layout_width="356dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/text_name"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/profileTextEmail"
+        android:layout_width="356dp"
+        android:layout_height="44dp"
+        android:text="@string/text_email"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLogout"
+        app:layout_constraintEnd_toEndOf="@+id/profileTextName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profileTextName"
+        app:layout_constraintTop_toBottomOf="@+id/profileTextName"
+        app:layout_constraintVertical_bias="0.027" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
