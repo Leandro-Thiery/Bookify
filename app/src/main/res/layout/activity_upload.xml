@@ -63,6 +63,8 @@
         android:id="@+id/editCategory"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:entries="@array/category_list"
+        android:backgroundTint="@color/colorWhite"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@+id/editAuthor"
         app:layout_constraintTop_toBottomOf="@+id/editAuthor"/>
@@ -72,7 +74,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:hint="Descirption"
+        android:hint="Description"
         android:fontFamily="@font/athiti"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhite"

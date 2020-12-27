@@ -57,8 +57,8 @@ public class Upload extends AppCompatActivity implements View.OnClickListener, A
         setContentView(R.layout.activity_upload);
         spinnerCategory = findViewById(R.id.editCategory);
         String[] category_list = getResources().getStringArray(R.array.category_list);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, category_list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.spinner, category_list);
+        arrayAdapter.setDropDownViewResource(R.layout.spinner);
         spinnerCategory.setAdapter(arrayAdapter);
         edtTitle = findViewById(R.id.editTitle);
         edtAuthor = findViewById(R.id.editAuthor);
