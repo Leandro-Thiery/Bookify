@@ -74,7 +74,7 @@ public class HorizontalRecyclerViewAdapter extends RecyclerView.Adapter<Horizont
                 holder.progressBar.setVisibility(View.GONE);
                 return false;
             }
-        }).placeholder(R.drawable.ic_launcher_foreground).into(holder.imageViewThumb);
+        }).into(holder.imageViewThumb);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

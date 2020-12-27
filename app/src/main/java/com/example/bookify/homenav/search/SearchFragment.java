@@ -172,7 +172,7 @@ public class SearchFragment extends Fragment {
 
                     return false;
                 }
-            }).placeholder(R.drawable.ic_launcher_foreground).into(show_cover);
+            }).into(show_cover);
 
 
 

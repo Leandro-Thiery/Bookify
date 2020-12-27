@@ -67,7 +67,7 @@ public class LibraryRecyclerViewAdapter extends RecyclerView.Adapter<LibraryRecy
             public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 return false;
             }
-        }).placeholder(R.drawable.ic_launcher_foreground).into(holder.imageLib);
+        }).into(holder.imageLib);
 
 
 

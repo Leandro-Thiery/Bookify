@@ -74,7 +74,7 @@ public class DeleteRecyclerViewAdapter extends RecyclerView.Adapter<DeleteRecycl
             public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 return false;
             }
-        }).placeholder(R.drawable.ic_launcher_foreground).into(holder.image);
+        }).into(holder.image);
 
     }
 

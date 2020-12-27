@@ -140,11 +140,11 @@ public class BookView extends AppCompatActivity {
 
                 return false;
             }
-        }).placeholder(R.drawable.ic_launcher_foreground).into(imageView);
+        }).into(imageView);
 
         Glide.with(this).load(book.getCover_url())
                 .apply(RequestOptions.bitmapTransform(new BlurTransformation(25, 3)))
-                .placeholder(R.drawable.ic_launcher_foreground).listener(new RequestListener<Drawable>() {
+                .listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 return false;

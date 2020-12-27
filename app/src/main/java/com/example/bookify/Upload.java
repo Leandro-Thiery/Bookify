@@ -161,7 +161,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener, A
 
                         return false;
                     }
-                }).placeholder(R.drawable.ic_launcher_foreground).into(imageView);
+                }).into(imageView);
                 pd.dismiss();
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
