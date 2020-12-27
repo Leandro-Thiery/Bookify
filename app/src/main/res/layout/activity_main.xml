@@ -21,12 +21,14 @@
 
     <EditText
         android:id="@+id/edtTxtPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/text_password"
+        android:hint="•••••••••"
         android:inputType="textPersonName|textPassword"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edtTxtEmail"
