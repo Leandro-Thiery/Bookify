@@ -39,8 +39,8 @@ import java.util.ArrayList;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class DeleteRecyclerViewAdapter extends RecyclerView.Adapter<DeleteRecyclerViewAdapter.DeleteRVViewHolder> {
-    Context context;
-    ArrayList<Book> arrayList;
+    private Context context;
+    private ArrayList<Book> arrayList;
 
     public DeleteRecyclerViewAdapter(Context context, ArrayList<Book> arrayList){
         this.context = context;

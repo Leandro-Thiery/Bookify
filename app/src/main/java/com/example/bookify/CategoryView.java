@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 public class CategoryView extends AppCompatActivity {
 
-    LibraryRecyclerViewAdapter adapter;
-    RecyclerView recyclerView;
-    ArrayList<Book> books;
+    private LibraryRecyclerViewAdapter adapter;
+    private RecyclerView recyclerView;
+    private ArrayList<Book> books;
 
 
     @Override

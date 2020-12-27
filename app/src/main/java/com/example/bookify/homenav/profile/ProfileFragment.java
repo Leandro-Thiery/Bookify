@@ -41,7 +41,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private FirebaseUser user;
     private String userID;
     private DatabaseReference reference;
-    private Toolbar toolbar;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,

@@ -28,9 +28,9 @@ import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
 public class OpenPDF extends AppCompatActivity {
-    PDFView pdfView;
-    Book book;
-    ProgressBar progressBar;
+    private PDFView pdfView;
+    private Book book;
+    private ProgressBar progressBar;
     int pageNumber;
     private String url;
     Context context = this;

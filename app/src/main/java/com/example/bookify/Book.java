@@ -3,13 +3,7 @@ package com.example.bookify;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    String title;
-    String description;
-    String category;
-    String cover_url;
-    String book_id;
-    String author;
-    String pdf_url;
+    private String title, description, category, cover_url, book_id, author, pdf_url;
 
     public Book (){
 

@@ -35,30 +35,18 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView verticalRecyclerView;
-    VerticalRecyclerViewAdapter adapter;
-    ArrayList<VerticalModel> arrayListVertical;
-    Toolbar toolbar;
+    private RecyclerView verticalRecyclerView;
+    private VerticalRecyclerViewAdapter adapter;
+    private ArrayList<VerticalModel> arrayListVertical;
     private FirebaseUser user;
     private DatabaseReference reference;
-    private DatabaseReference currentUser;
-    private DataSnapshot dsp;
     private String userID;
     private String userName;
     private TextView mWelcome;
-    private TextView usertext;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        //
-        //homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-        //   @Override
-        //    public void onChanged(@Nullable String s) {
-        //        textView.setText(s);
-        //    }
-        //});
-
         arrayListVertical = new ArrayList<>();
         mWelcome = (TextView) root.findViewById(R.id.homeWelcome);
 

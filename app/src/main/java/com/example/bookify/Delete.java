@@ -18,10 +18,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Delete extends AppCompatActivity {
-    RecyclerView recyclerView;
-    DeleteRecyclerViewAdapter adapter;
-    ArrayList<Book> books;
-    String UserID;
+    private RecyclerView recyclerView;
+    private DeleteRecyclerViewAdapter adapter;
+    private ArrayList<Book> books;
+    private String UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -30,13 +30,14 @@ import java.util.ArrayList;
 
 public class LibraryFragment extends Fragment {
 
-    LibraryRecyclerViewAdapter adapter;
-    RecyclerView recyclerView;
-    ArrayList<Book> books;
-    String UserID;
+    private LibraryRecyclerViewAdapter adapter;
+    private RecyclerView recyclerView;
+    static ArrayList<Book> books;
+    private String UserID;
     private ImageButton searchButton;
     private EditText searchText;
     private Button searchClear;
+    private TextView totalBooks;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class LibraryFragment extends Fragment {
         searchButton = root.findViewById(R.id.librarySearchButton);
         searchClear = root.findViewById(R.id.librarySearchClear);
         searchText = root.findViewById(R.id.librarySearchText);
+        totalBooks = root.findViewById(R.id.text_total_books);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +91,7 @@ public class LibraryFragment extends Fragment {
     public void onResume() {
         super.onResume();
         inputData();
+
         adapter.notifyDataSetChanged();
     }
 
@@ -148,7 +151,8 @@ public class LibraryFragment extends Fragment {
                             Book book;
                             book = snapshot.getValue(Book.class);
                             books.add(book);
-                            adapter.notifyDataSetChanged();;
+                            totalBooks.setText(String.valueOf(books.size()) + " Books");
+                            adapter.notifyDataSetChanged();
                         }
 
                         @Override
@@ -159,11 +163,13 @@ public class LibraryFragment extends Fragment {
                 }
             }
 
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
     }
 
 }

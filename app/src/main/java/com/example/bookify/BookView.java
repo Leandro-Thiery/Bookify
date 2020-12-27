@@ -44,10 +44,10 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 
 public class BookView extends AppCompatActivity {
-    TextView textTitle, textCategory, textDescription, textAuthor;
-    ImageView imageView, imageViewBack;
-    Button buttonRead, buttonAddLib, buttonDelete;
-    String url, userId;
+    private TextView textTitle, textCategory, textDescription, textAuthor;
+    private ImageView imageView, imageViewBack;
+    private Button buttonRead, buttonAddLib, buttonDelete;
+    private String userId;
     static Boolean exist, contributor;
 
     DatabaseReference databaseLibrary, databaseContributor;
@@ -201,14 +201,14 @@ public class BookView extends AppCompatActivity {
 
                                     }
                                 });
-                                databaseContributor.child(book.book_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                databaseContributor.child(book.getBook_id()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
 
                                     }
                                 });
                                 databaseContributor = FirebaseDatabase.getInstance().getReference("Library").child(userId);
-                                databaseContributor.child(book.book_id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                databaseContributor.child(book.getBook_id()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
 
