@@ -40,14 +40,15 @@ public class HomeFragment extends Fragment {
     private ArrayList<VerticalModel> arrayListVertical;
     private FirebaseUser user;
     private DatabaseReference reference;
-    private String userID;
-    private String userName;
+    private String userID, userName;
+    private String[] categories;
     private TextView mWelcome;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         arrayListVertical = new ArrayList<>();
+        categories = getResources().getStringArray(R.array.category_list);
         mWelcome = (TextView) root.findViewById(R.id.homeWelcome);
 
 
@@ -106,9 +107,6 @@ public class HomeFragment extends Fragment {
     private void setData() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("books");
         // Path reference to books database
-        Query reference1 = FirebaseDatabase.getInstance().getReference("books").orderByChild("category").equalTo("Category1");
-        // Path reference to books database, but uses query for filtering
-        Query reference2 = FirebaseDatabase.getInstance().getReference("books").orderByChild("category").equalTo("Category2");
 
 
         //Add books to Recycle View
@@ -135,51 +133,29 @@ public class HomeFragment extends Fragment {
         verticalModel.setArrayList(arrayListHorizontal);
         arrayListVertical.add(verticalModel);
 
-        //Horizontal Recycle View 2 (Category 1)
-        verticalModel = new VerticalModel();
-        verticalModel.setTitle("Category1");
-        final ArrayList<Book> arrayListHorizontal1 = new ArrayList<>();
-        reference1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snapshot1 : snapshot.getChildren() ){
-                    Book book = snapshot1.getValue(Book.class);
-                    arrayListHorizontal1.add(book);
-                    adapter.notifyDataSetChanged();
+        for (String str : categories){
+            Query reference1 = FirebaseDatabase.getInstance().getReference("books").orderByChild("category").equalTo(str);
+            verticalModel = new VerticalModel();
+            verticalModel.setTitle(str);
+            final ArrayList<Book> arrayListHorizontal1 = new ArrayList<>();
+            reference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren() ){
+                        Book book = snapshot1.getValue(Book.class);
+                        arrayListHorizontal1.add(book);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
 
-            }
-        });
-        verticalModel.setArrayList(arrayListHorizontal1);
-        arrayListVertical.add(verticalModel);
-
-        //Horizontal Recycle View 3 (Category 2)
-        verticalModel = new VerticalModel();
-        verticalModel.setTitle("Category2");
-        final ArrayList<Book> arrayListHorizontal2 = new ArrayList<>();
-        reference2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snapshot1 : snapshot.getChildren() ){
-                    Book book = snapshot1.getValue(Book.class);
-                    arrayListHorizontal2.add(book);
-                    adapter.notifyDataSetChanged();
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
-            }
-        });
-        verticalModel.setArrayList(arrayListHorizontal2);
-        arrayListVertical.add(verticalModel);
-
-        // End of Recycle View
+            });
+            verticalModel.setArrayList(arrayListHorizontal1);
+            arrayListVertical.add(verticalModel);
+        }
 
 
 
