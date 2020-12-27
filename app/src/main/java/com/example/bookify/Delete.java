@@ -32,6 +32,7 @@ public class Delete extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         adapter = new DeleteRecyclerViewAdapter(this, books);
         recyclerView.setAdapter(adapter);
+        getSupportActionBar().setTitle("Select to Delete");
 
     }
 

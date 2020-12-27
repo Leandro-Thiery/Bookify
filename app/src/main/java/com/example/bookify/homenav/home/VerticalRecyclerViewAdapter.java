@@ -56,7 +56,6 @@ public class VerticalRecyclerViewAdapter extends RecyclerView.Adapter<VerticalRe
                 String category = verticalModel.getTitle();
                 Intent intent = new Intent(context, CategoryView.class);
                 intent.putExtra("Category", category);
-                Toast.makeText(context, verticalModel.getTitle(),Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
 
             }

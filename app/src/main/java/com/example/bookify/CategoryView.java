@@ -37,6 +37,8 @@ public class CategoryView extends AppCompatActivity {
         adapter = new LibraryRecyclerViewAdapter(this, books);
         recyclerView.setAdapter(adapter);
 
+        getSupportActionBar().setTitle(category);
+
         inputData(category);
 
     }
