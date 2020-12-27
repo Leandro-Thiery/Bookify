@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
@@ -34,9 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Button login = findViewById(R.id.buttonLogin);
         login.setOnClickListener(this);
-        Button register = findViewById(R.id.txtbuttonRegister);
+        TextView register = findViewById(R.id.txtbuttonRegister);
         register.setOnClickListener(this);
-        Button forgot = findViewById(R.id.buttonForgot);
+        TextView forgot = findViewById(R.id.buttonForgot);
         forgot.setOnClickListener(this);
 
         edtTxtPass = findViewById(R.id.edtTxtPass);

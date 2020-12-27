@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_color"
     tools:context=".Upload">
 
     <Button
         android:id="@+id/buttonUploadPDF"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/button_darkblue"
         android:text="Upload"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="@+id/editDescription"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editDescription"
         app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
@@ -33,7 +35,10 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:hint="Title"
+        android:backgroundTint="@android:color/white"
         android:layout_marginStart="16dp"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toEndOf="@+id/imageCover"
         app:layout_constraintTop_toTopOf="@+id/imageCover" />
@@ -43,7 +48,10 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textColor="@color/colorWhite"
+        android:backgroundTint="@android:color/white"
         android:hint="Author"
+        android:textColorHint="@color/colorWhite"
         app:layout_constraintStart_toStartOf="@+id/editTitle"
         app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
@@ -61,6 +69,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:hint="Descirption"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:backgroundTint="@android:color/white"
         android:maxLength="500"
         app:layout_constraintEnd_toEndOf="@+id/editCategory"
         app:layout_constraintHeight_max="250dp"
