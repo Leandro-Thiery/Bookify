@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,79 +11,110 @@
         android:id="@+id/buttonLogin"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="56dp"
+        android:layout_below="@+id/edtTxtPass"
+        android:layout_alignStart="@+id/edtTxtPass"
+        android:layout_alignEnd="@+id/edtTxtPass"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="31dp"
         android:background="@drawable/button_darkblue"
         android:fontFamily="@font/athiti"
+        android:text="Sign In"
         android:textColor="@color/colorWhite"
-        android:text="Sign Up"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonForgot" />
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/hellodescMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/helloMain"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/athiti"
+        android:text="Sign in into your account"
+        android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/helloMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/athiti_bold"
+        android:text="Hello!"
+        android:textColor="@color/colorWhite"
+        android:textSize="35sp" />
 
     <Button
         android:id="@+id/txtbuttonRegister"
-        android:layout_width="43dp"
+        android:gravity="right"
+        android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginTop="132dp"
-        android:background="@drawable/component_18__1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="100dp"
+        android:background="@android:color/transparent"
         android:fontFamily="@font/athiti"
-        android:src="@drawable/component_11__1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-        app:layout_constraintVertical_bias="0.0" />
+        android:text="@string/button_register"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"/>
 
     <Button
         android:id="@+id/buttonForgot"
         android:layout_width="160dp"
         android:layout_height="24dp"
-        android:layout_marginTop="60dp"
+        android:layout_below="@+id/buttonLogin"
+        android:layout_alignStart="@+id/edtTxtPass"
+        android:layout_alignEnd="@+id/edtTxtPass"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="26dp"
         android:background="@drawable/component_13__1"
         android:fontFamily="@font/athiti"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtTxtPass"
         android:layout_width="211dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_below="@+id/edtTxtEmail"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
         android:backgroundTint="@android:color/white"
         android:hint="•••••••••"
         android:inputType="textPersonName|textPassword"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhite"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonForgot"
-        app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtTxtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/edtTxtEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:hint="@string/text_email"
+        android:layout_below="@+id/hellodescMain"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="100dp"
         android:backgroundTint="@android:color/white"
-        android:textColorHint="@color/colorWhite"
-        android:textColor="@color/colorWhite"
-        android:textSize="18sp"
         android:ems="10"
+        android:fontFamily="@font/athiti"
+        android:hint="@string/text_email"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="18sp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -99,30 +130,18 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginTop="132dp"
+        android:layout_height="21dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/athiti"
         android:text="Don't Have an account?"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txtbuttonRegister"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="205dp"
-        android:layout_height="68dp"
-        app:layout_constraintBottom_toTopOf="@+id/edtTxtEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.199"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452"
-        app:srcCompat="@drawable/component_15__1" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

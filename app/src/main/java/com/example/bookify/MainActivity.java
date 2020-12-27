@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         register.setOnClickListener(this);
         Button forgot = findViewById(R.id.buttonForgot);
         forgot.setOnClickListener(this);
+        getSupportActionBar().hide();
 
         edtTxtPass = findViewById(R.id.edtTxtPass);
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
