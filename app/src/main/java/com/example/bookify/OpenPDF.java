@@ -42,7 +42,6 @@ public class OpenPDF extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         Intent intent = getIntent();
         book = (Book) intent.getSerializableExtra("Bookpdf");
-        Toast.makeText(this, book.getPdf_url(), Toast.LENGTH_SHORT).show();
         progressBar = findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.VISIBLE);
         pdfView = findViewById(R.id.pdfView);
