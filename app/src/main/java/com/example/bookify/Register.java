@@ -102,6 +102,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                                     if(task.isSuccessful()){
                                         Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
+                                        Intent intent = new Intent(Register.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
 
                                     }else{
                                         Toast.makeText(Register.this, "Failed to Register", Toast.LENGTH_SHORT).show();
@@ -114,10 +117,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         }else{
                             Toast.makeText(Register.this, "Failed to Register", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
+                            Intent intent = new Intent(Register.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
                 });
-        Intent intent = new Intent(Register.this, MainActivity.class);
-        startActivity(intent);
+
     }
 }

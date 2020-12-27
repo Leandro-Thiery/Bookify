@@ -63,17 +63,19 @@
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"/>
 
-    <Button
+    <TextView
         android:id="@+id/buttonForgot"
         android:layout_width="160dp"
         android:layout_height="24dp"
         android:layout_below="@+id/buttonLogin"
         android:layout_alignStart="@+id/edtTxtPass"
         android:layout_alignEnd="@+id/edtTxtPass"
+        android:gravity="center"
         android:layout_marginStart="26dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/component_13__1"
+        android:text="Forgot Your Password?"
+        android:textColor="@color/colorWhite"
         android:fontFamily="@font/athiti"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
