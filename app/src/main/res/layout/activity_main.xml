@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,140 +7,141 @@
     android:background="@drawable/gradient_color"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/buttonLogin"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="56dp"
-            android:background="@drawable/button_darkblue"
-            android:fontFamily="@font/athiti"
-            android:textColor="@color/colorWhite"
-            android:text="Sign Up"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonForgot" />
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/edtTxtPass"
+        android:layout_alignStart="@+id/edtTxtPass"
+        android:layout_alignEnd="@+id/edtTxtPass"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="31dp"
+        android:background="@drawable/button_darkblue"
+        android:fontFamily="@font/athiti"
+        android:text="Sign In"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/hellodescMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/helloMain"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/athiti"
+        android:text="Sign in into your account"
+        android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/helloMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/athiti_bold"
+        android:text="Hello!"
+        android:textColor="@color/colorWhite"
+        android:textSize="35sp" />
+
+    <Button
+        android:id="@+id/txtbuttonRegister"
+        android:gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="100dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="@font/athiti"
+        android:text="@string/button_register"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"/>
+
+    <Button
+        android:id="@+id/buttonForgot"
+        android:layout_width="160dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/buttonLogin"
+        android:layout_alignStart="@+id/edtTxtPass"
+        android:layout_alignEnd="@+id/edtTxtPass"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="26dp"
+        android:background="@drawable/component_13__1"
+        android:fontFamily="@font/athiti"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtTxtPass"
+        android:layout_width="211dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/edtTxtEmail"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="•••••••••"
+        android:inputType="textPersonName|textPassword"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edtTxtEmail"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hellodescMain"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="100dp"
+        android:backgroundTint="@android:color/white"
+        android:ems="10"
+        android:fontFamily="@font/athiti"
+        android:hint="@string/text_email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textSize="18sp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/athiti"
+        android:text="Don't Have an account?"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+        app:layout_constraintVertical_bias="0.0" />
 
 
-
-        <TextView
-            android:id="@+id/buttonForgot"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/athiti"
-            android:text="Forgot Your Password?"
-            android:textColor="@color/colorWhite"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtTxtPass" />
-
-        <EditText
-            android:id="@+id/edtTxtPass"
-            android:layout_width="211dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@android:color/white"
-            android:hint="Password"
-            android:inputType="textPersonName|textPassword"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonForgot"
-            app:layout_constraintEnd_toEndOf="@+id/edtTxtEmail"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/edtTxtEmail"
-            app:layout_constraintTop_toBottomOf="@+id/edtTxtEmail"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <EditText
-            android:id="@+id/edtTxtEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="152dp"
-            android:hint="@string/text_email"
-            android:backgroundTint="@android:color/white"
-            android:textColorHint="@color/colorWhite"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="24dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/athiti"
-                android:text="Don't Have an account?"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@id/txtbuttonRegister" />
-
-            <TextView
-                android:id="@+id/txtbuttonRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:layout_alignParentEnd="true"
-                android:fontFamily="@font/athiti"
-                android:layout_centerVertical="true"
-                android:text="Register"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/textView"/>
-
-        </RelativeLayout>
-
-
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="205dp"
-            android:layout_height="68dp"
-            app:layout_constraintBottom_toTopOf="@+id/edtTxtEmail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.199"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.452"
-            app:srcCompat="@drawable/component_15__1" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-</ScrollView>
+</RelativeLayout>

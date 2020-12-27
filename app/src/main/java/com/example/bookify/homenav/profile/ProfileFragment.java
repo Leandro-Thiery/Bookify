@@ -83,8 +83,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         textContributor.setText("Contributor : No");
                     }
 
-                    profileTextName.setText("Name : " + name);
-                    profileTextEmail.setText("Email : " + email);
+                    profileTextName.setText(name);
+                    profileTextEmail.setText(email);
 
                 }
             }

@@ -8,37 +8,48 @@
     tools:context=".homenav.library.LibraryFragment">
 
     <TextView
+        android:id="@+id/library_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:textSize="30sp"
-        android:textColor="@color/colorWhite"
-        android:fontFamily="@font/athiti"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:text="My Library" />
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/athiti_semibold"
+        android:gravity="left"
+        android:paddingStart="20dp"
+        android:text="My Library"
+        android:textColor="@color/colorWhite"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/text_total_books"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/search_bar"
+        android:layout_below="@+id/library_header"
         android:layout_alignParentStart="true"
-        android:gravity="center_horizontal"
-        android:textSize="30sp"
-        android:textColor="@color/colorWhite"
-        android:fontFamily="@font/athiti"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="50dp"
-        android:text="0 Books" />
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="36dp"
+        android:fontFamily="@font/athiti"
+        android:gravity="left"
+        android:paddingStart="20dp"
+        android:text="0 Books"
+        android:textColor="@color/colorWhite"
+        android:textSize="23sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/search_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_above="@+id/recyclerviewlib"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp">
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="20dp">
 
 
         <Button
@@ -101,7 +112,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewlib"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_height="511dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/bg_roundtop" />
 </RelativeLayout>
