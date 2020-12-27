@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -214,6 +215,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener, A
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        ((TextView) view).setTextColor(getResources().getColor(R.color.colorWhite));
         category = parent.getItemAtPosition(position).toString();
     }
 
