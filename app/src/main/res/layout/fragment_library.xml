@@ -26,7 +26,6 @@
         android:id="@+id/text_total_books"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/search_bar"
         android:layout_below="@+id/library_header"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -45,7 +44,7 @@
         android:id="@+id/search_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/recyclerviewlib"
+        android:layout_below="@id/text_total_books"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="0dp"
@@ -116,5 +115,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
+        android:layout_below="@id/search_bar"
         android:background="@drawable/bg_roundtop" />
 </RelativeLayout>
