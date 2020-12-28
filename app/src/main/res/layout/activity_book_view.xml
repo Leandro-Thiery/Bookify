@@ -7,14 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".BookView">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/bookViewBack"
             android:layout_width="match_parent"
             android:layout_height="225dp"
             android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,6 +28,9 @@
             android:layout_height="225dp"
             android:background="#66000000"
             android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,15 +44,20 @@
             android:elevation="10dp"
             android:adjustViewBounds="true"
             android:src="@mipmap/ic_launcher"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY"/>
 
         <TextView
             android:id="@+id/bookTitleView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
             android:text="@string/title"
+            android:layout_toEndOf="@id/bookImageView"
             android:fontFamily="@font/athiti"
             android:textColor="@color/colorWhite"
             app:layout_constraintStart_toEndOf="@+id/bookImageView"
@@ -57,8 +68,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/athiti"
             android:textColor="@color/colorWhite"
+            android:layout_below="@id/bookTitleView"
+            android:layout_toEndOf="@id/bookImageView"
             app:layout_constraintStart_toStartOf="@+id/bookTitleView"
             app:layout_constraintTop_toBottomOf="@+id/bookTitleView" />
 
@@ -68,8 +82,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/athiti"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
             android:textColor="@color/colorWhite"
             android:text="Author"
+            android:layout_toEndOf="@id/bookImageView"
+            android:layout_below="@id/bookTitleText"
             app:layout_constraintTop_toBottomOf="@+id/bookTitleText"
             app:layout_constraintStart_toStartOf="@+id/bookTitleView" />
 
@@ -78,8 +95,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
             android:textColor="@color/colorWhite"
             android:fontFamily="@font/athiti"
+            android:layout_toEndOf="@id/bookImageView"
+            android:layout_below="@id/bookAuthorView"
             app:layout_constraintTop_toBottomOf="@+id/bookAuthorView"
             app:layout_constraintStart_toStartOf="@+id/bookTitleView" />
 
@@ -89,8 +109,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/athiti"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
             android:textColor="@color/colorWhite"
             android:text="Category"
+            android:layout_below="@id/bookAuthorText"
+            android:layout_toEndOf="@id/bookImageView"
             app:layout_constraintStart_toStartOf="@+id/bookTitleView"
             app:layout_constraintTop_toBottomOf="@+id/bookAuthorText" />
 
@@ -100,7 +123,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/athiti"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
             android:textColor="@color/colorWhite"
+            android:layout_below="@id/bookCategoryView"
+            android:layout_toEndOf="@id/bookImageView"
             app:layout_constraintStart_toStartOf="@+id/bookTitleView"
             app:layout_constraintTop_toBottomOf="@+id/bookCategoryView" />
 
@@ -109,23 +135,26 @@
             android:id="@+id/bookDescriptionView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="80dp"
             android:fontFamily="@font/athiti"
             android:text="Description"
+            android:layout_below="@id/bookImageView"
             app:layout_constraintStart_toStartOf="@+id/bookImageView"
             app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
 
         <TextView
             android:id="@+id/bookDescriptionText"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginStart="24dp"
             android:fontFamily="@font/athiti"
             android:justificationMode="inter_word"
             android:text="TextViews"
+            android:layout_below="@id/bookDescriptionView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -138,6 +167,8 @@
             android:layout_width="184dp"
             android:layout_height="42dp"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/button_blue"
             android:fontFamily="@font/athiti_medium"
             android:gravity="center"
@@ -145,6 +176,9 @@
             android:textAllCaps="false"
             android:elevation="10dp"
             android:textSize="20sp"
+            android:layout_below="@id/bookCategoryText"
+            android:layout_toEndOf="@id/bookImageView"
+            android:layout_alignParentEnd="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/bookTitleView"
@@ -155,13 +189,18 @@
             android:layout_width="184dp"
             android:layout_height="42dp"
             android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/button_yellow"
+            android:elevation="10dp"
             android:fontFamily="@font/athiti_medium"
             android:gravity="center"
             android:text="Add to Library"
             android:textAllCaps="false"
-            android:elevation="10dp"
             android:textSize="20sp"
+            android:layout_below="@id/buttonRead"
+            android:layout_toEndOf="@id/bookImageView"
+            android:layout_alignParentEnd="true"
             app:layout_constraintEnd_toEndOf="@+id/buttonRead"
             app:layout_constraintStart_toStartOf="@+id/bookTitleView"
             app:layout_constraintTop_toBottomOf="@+id/buttonRead" />
@@ -171,6 +210,7 @@
             android:layout_width="120dp"
             android:layout_height="42dp"
             android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
             android:background="@drawable/button_red"
             android:fontFamily="@font/athiti_medium"
             android:gravity="center"
@@ -180,13 +220,15 @@
             android:textColor="@color/colorWhite"
             android:textSize="20sp"
             android:visibility="gone"
+            android:layout_below="@id/bookImageView"
+            android:layout_alignParentStart="true"
             app:layout_constraintEnd_toEndOf="@+id/bookImageView"
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="@+id/bookImageView"
             app:layout_constraintTop_toBottomOf="@+id/buttonRead" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 
 
