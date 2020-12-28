@@ -9,12 +9,13 @@
 
     <ImageView
         android:id="@+id/libImage"
-        android:layout_width="match_parent"
+        android:layout_width="140dp"
         android:layout_height="160dp"
         android:background="@drawable/bg_roundall"
         android:src="@mipmap/ic_launcher"
         android:layout_gravity="center_horizontal"
-        android:elevation="5dp"/>
+        android:elevation="5dp"
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/libraryTitle"
