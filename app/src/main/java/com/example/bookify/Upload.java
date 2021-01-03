@@ -82,14 +82,39 @@ public class Upload extends AppCompatActivity implements View.OnClickListener, A
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.buttonUploadPDF:
-                selectPDF();
+                if (checkinput()){
+                    selectPDF();
+                }
+
                 break;
             case R.id.imageCover:
-                selectCover();
+                if(checkinput()){
+                    selectCover();
+                }
                 break;
             default:
                 break;
         }
+    }
+
+    private boolean checkinput() {
+        String title = edtTitle.getText().toString().trim();
+        String author = edtAuthor.getText().toString().trim();
+        String description = editDescription.getText().toString().trim();
+
+        if (title.isEmpty()){
+            edtTitle.setError("Title is Empty");
+            return false;
+        }
+        if (author.isEmpty()){
+            edtAuthor.setError("Author is Empty");
+            return false;
+        }
+        if (description.isEmpty()){
+            editDescription.setError("Description is Empty");
+            return false;
+        }
+        return true;
     }
 
     private void selectPDF() {
